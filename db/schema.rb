@@ -16,27 +16,11 @@ ActiveRecord::Schema.define(version: 20140723215426) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "proficiencies", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "skill_id"
-    t.integer  "years",      default: 0
-    t.string   "formal",     default: "no"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-  end
-
-  create_table "skills", force: true do |t|
-    t.string   "name"
-    t.string   "context"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "tweets", force: true do |t|
     t.string   "username"
     t.string   "content"
     t.integer  "stars"
-    t.integer  "latitutde"
+    t.integer  "latitude"
     t.integer  "longitude"
     t.string   "url"
     t.integer  "twitter_id"
@@ -44,14 +28,6 @@ ActiveRecord::Schema.define(version: 20140723215426) do
     t.string   "state"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "users", force: true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "password_hash"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
   end
 
 end

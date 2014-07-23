@@ -4,7 +4,7 @@ class CreateTweets < ActiveRecord::Migration
       t.string :username
       t.string :content
       t.integer :stars
-      t.integer :latitutde
+      t.integer :latitude
       t.integer :longitude
       t.string :url
       t.integer :twitter_id
