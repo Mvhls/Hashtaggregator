@@ -15,6 +15,7 @@
   - Modify JS Tweet objects based on User upvotes
   - Modify User rankings based on User upvotes
 - Angular frontend
-  - 1 view(don't want to waste a lot of time designing and styling a bunch of views)
+  - 1 view(don't want to waste a lot of time designing and styling a bunch of sublls
+  views)
   - Modify Tweets display in the front-end
     - searchable map(find Tweets by content, User ranking, or pre-defined tags)
