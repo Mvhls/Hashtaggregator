@@ -6,6 +6,7 @@ class TweetsController < ApplicationController
     @client.filter(:track => "#myworstbirthday") do |object|
       next if object.text.include? 'RT'
       p object.text if object.is_a?(Twitter::Tweet)
+      # object
     end
   end
 end
