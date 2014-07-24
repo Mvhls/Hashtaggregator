@@ -8,8 +8,7 @@ class CreateTweets < ActiveRecord::Migration
       t.integer :longitude
       t.string :url
       t.integer :twitter_id
-      t.string :city
-      t.string :state
+      t.string :location
 
       t.timestamps
     end
