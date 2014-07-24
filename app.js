@@ -42,7 +42,7 @@ db.on("connect", function (err) {
         console.log("something is wrong with the database connection", err);
         return;
     }
-    var Tweet = db.define('tweet', {
+    var Tweet = db.define('tweets', {
         id          : { type: "integer" },
         username    : { type: "text" },
         content     : { type: "text" },
@@ -55,11 +55,16 @@ db.on("connect", function (err) {
         updated_at  : { type: "date" }
     });
 
-    var tweet = Tweet.find({
+    Tweet.find({
         username: "zachpflederer"
     }, function(err, tweets) {
-        console.log('hi')
-        console.log(tweet.content);
+        if(err) {
+            console.log(err)
+        }
+        else {
+            console.log('hi')
+            console.log(tweets[0].content);
+        }
     })
 })
 
