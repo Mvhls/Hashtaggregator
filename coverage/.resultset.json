@@ -1,12 +1,36 @@
 {
   "RSpec": {
     "coverage": {
+      "/Users/apprentice/hashtaggregate/app/controllers/tweets_controller.rb": [
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null
+      ],
+      "/Users/apprentice/hashtaggregate/app/controllers/application_controller.rb": [
+        1,
+        null,
+        null,
+        1,
+        null
+      ],
       "/Users/apprentice/hashtaggregate/app/models/tweet.rb": [
         1,
         1,
         null
       ]
     },
-    "timestamp": 1406155775
+    "timestamp": 1406160222
   }
 }
