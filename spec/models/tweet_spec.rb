@@ -11,8 +11,7 @@ before(:each) do
 		longitude: 300,
 		url: "http://this_guy.com",
 		twitter_id: 17,
-		city: "Chicago",
-		state: "Illinois")
+		location: "Chicago, IL")
 end
 
 	it 'should create a tweet' do
