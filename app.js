@@ -11,12 +11,13 @@ var db = orm.connect(process.env.DATABASE_URL || "postgres://apprentice@localhos
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
+
 var app = express();
 
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'ejs');
 
 app.use(favicon());
 app.use(logger('dev'));
