@@ -2,23 +2,19 @@ require 'rails_helper'
 
 describe Tweet do
 
-	let(:tweet) { create :tweet }
+	# let(:tweet) { create :tweet }
 	let(:tweet_hash) { attributes_for :tweet }
-# before(:each) do
-# 	@tweet = Tweet.create(
-# 		username: 'this_guy',
-# 		content: 'this guy is tweeting',
-# 		stars: 2,
-# 		latitude: 500,
-# 		longitude: 300,
-# 		url: "http://this_guy.com",
-# 		twitter_id: 17,
-# 		location: "Chicago, IL")
-# end
 
-	it 'should create a tweet' do
-		expect(tweet).to be_a_kind_of(Tweet)
-	end
+	subject{ create :tweet }
+
+	it { should respond_to :username }
+	it { should respond_to :content }
+	it { should respond_to :stars }
+	it { should respond_to :latitude }
+	it { should respond_to :longitude }
+	it { should respond_to :url }
+	it { should respond_to :location }
+	it { should_not respond_to :turd_ferguson }
 
 	it 'validates tweet id is unique' do
 		Tweet.create tweet_hash
