@@ -974,3 +974,11 @@ Migrating to ChangeLatAndLongToFloats (20140724014600)
   [1m[35mTweet Exists (0.4ms)[0m  SELECT  1 AS one FROM "tweets"  WHERE "tweets"."twitter_id" = '492125182958370816' LIMIT 1
   [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "tweets" ("content", "created_at", "location", "twitter_id", "updated_at", "url", "username") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["content", "Our family lost power for two weeks when my sister turned nine.  #MyWorstBirthday #morelikemysisters #creepedout"], ["created_at", "2014-07-24 01:52:41.242200"], ["location", ""], ["twitter_id", 492125182958370816], ["updated_at", "2014-07-24 01:52:41.242200"], ["url", ""], ["username", "bekah_muller"]]
   [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mTweet Exists (0.4ms)[0m  SELECT  1 AS one FROM "tweets"  WHERE "tweets"."twitter_id" = '492125197604904961' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "tweets" ("content", "created_at", "location", "twitter_id", "updated_at", "url", "username") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["content", "My party was at a pool and my parents got me a karaoke machine but when my brother tripped the machine went for a swim #MyWorstBirthday"], ["created_at", "2014-07-24 01:52:44.743397"], ["location", ""], ["twitter_id", 492125197604904961], ["updated_at", "2014-07-24 01:52:44.743397"], ["url", ""], ["username", "payton_pr"]]
+  [1m[35m (0.6ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mTweet Exists (0.4ms)[0m  SELECT  1 AS one FROM "tweets"  WHERE "tweets"."twitter_id" = '492125307344678912' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "tweets" ("content", "created_at", "location", "twitter_id", "updated_at", "url", "username") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["content", "One year for my birthday as I was being sung to my sister lit my hair on fire #MyWorstBirthday"], ["created_at", "2014-07-24 01:53:10.917196"], ["location", ""], ["twitter_id", 492125307344678912], ["updated_at", "2014-07-24 01:53:10.917196"], ["url", ""], ["username", "cmorgan650"]]
+  [1m[35m (0.5ms)[0m  COMMIT
