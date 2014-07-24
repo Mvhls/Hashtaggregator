@@ -1,15 +1,16 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
+  user = "twitter_user"
+  id = 1
   factory :tweet do
-    username "MyString"
-    content "MyString"
+    username user
+    content "tweet tweet said the bobolink"
     stars 1
-    latitutde 1
+    latitude 1
     longitude 1
-    url "MyString"
-    twitter_id 1
-    city "MyString"
-    state "MyString"
+    url "https://twitter.com/#{user}/status/#{id}"
+    twitter_id id
+    location "Pawnee, IN"
   end
 end
