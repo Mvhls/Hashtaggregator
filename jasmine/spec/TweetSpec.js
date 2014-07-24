@@ -2,25 +2,26 @@ describe("Tweet", function() {
   var tweet;
 
   beforeEach(function() {
-    tweet = new Tweet();
+    tweet = new Tweet({
+      id: 1,
+      username: "bob",
+      content: "tweet tweet",
+      longitude: 72.45,
+      latitude: 54.34,
+      twitter_id: "9048750982374098234",
+      location: "Chicago, IL",
+      stars: 1
+    });
   });
 
   it("is a Tweet", function() {
+    console.log(tweet.created_at)
     expect(tweet instanceof Tweet).toBe(true);
   });
 
-  // describe("when song has been paused", function() {
-  //   beforeEach(function() {
-  //     player.play(song);
-  //     player.pause();
-  //   });
-
-  //   it("should indicate that the song is currently paused", function() {
-  //     expect(player.isPlaying).toBeFalsy();
-
-  //     // demonstrates use of 'not' with a custom matcher
-  //     expect(player).not.toBePlaying(song);
-  //   });
+  it("should store the correct information", function() {
+    expect(tweet.username).toBe("bob");
+  });
 
   //   it("should be possible to resume", function() {
   //     player.resume();
