@@ -11,3 +11,6 @@ function Tweet(args){
   this.updated_at = new Date().toString()
 }
 
+module.exports.Tweet = {
+
+}
