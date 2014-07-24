@@ -4,7 +4,7 @@ class TweetsController < ApplicationController
   def stream
     set_up_client
     @client.filter(:track => "#myworstbirthday") do |twitter_tweet|
-      next if twitter_tweet.text.include? 'RT'
+      # next if twitter_tweet.text.include? 'RT'
       new_tweet = {
         username: twitter_tweet.user.screen_name,
         content: twitter_tweet.full_text,
