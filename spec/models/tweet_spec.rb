@@ -2,7 +2,6 @@ require 'rails_helper'
 
 describe Tweet do
 
-	# let(:tweet) { create :tweet }
 	let(:tweet_hash) { attributes_for :tweet }
 
 	subject{ create :tweet }
