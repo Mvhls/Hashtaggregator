@@ -3,12 +3,12 @@ class TweetsController < ApplicationController
 
   def stream
     set_up_client
-    @client.filter(:track => "#myworstbirthday") do |object|
-      next if object.text.include? 'RT'
-
-      # p object.text if object.is_a?(Twitter::Tweet)
+    @client.filter(:track => "#myworstbirthday") do |twitter_tweet|
+      next if twitter_tweet.text.include? 'RT'
+      Backlog.perform_async(twitter_tweet)
+      # p twitter_tweet.text if twitter_tweet.is_a?(Twitter::Tweet)
       # hey mike/jonathon, this seems a little janky to us but it works.
-      @tweet = object
+      @tweet = twitter_tweet
       return (@tweet) if ENV[:test]
     end
   end

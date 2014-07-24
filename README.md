@@ -19,3 +19,14 @@
   views)
   - Modify Tweets display in the front-end
     - searchable map(find Tweets by content, User ranking, or pre-defined tags)
+
+##to run locally
+
+- fire up redis
+<tt>redis-server</tt>
+
+- fire up sidekiq:
+<tt>bundle exec sidekiq -r./config/environment.rb</tt>
+
+##for deployment
+- [https://github.com/mperham/sidekiq/wiki/Deployment](sidekiq and heroku docs)
