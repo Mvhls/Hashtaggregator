@@ -47,9 +47,12 @@ router.get('/', function(req, res) {
     });
     // console.log(tweet)
   });
+	// stream.on('tweet', function(tweet) {
+ //    console.log(tweet)
 
+ //  });
   res.render('index', {
-    title: 'Stuville', t_weet: t_weet
+    title: 'Stuville'//, t_weet: t_weet
   });
 });
 
