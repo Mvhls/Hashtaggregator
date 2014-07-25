@@ -16,12 +16,13 @@ var t_weet = "";
  // GET home page.
 router.get('/', function(req, res) {
 
-	stream.on('tweet', function(tweet) {
-    console.log(tweet)
-  });
+	// stream.on('tweet', function(tweet) {
+ //    console.log(tweet)
+    
+ //  });
 
   res.render('index', {
-    title: 'Stuville', t_weet: t_weet
+    title: 'Stuville'//, t_weet: t_weet
   });
 });
 
