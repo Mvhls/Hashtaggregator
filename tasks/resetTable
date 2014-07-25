@@ -2,4 +2,4 @@
 
 psql hashtag_dev -c "DROP TABLE tweets"
 
-psql hashtag_dev -c "$(node createTable.js)"
+psql hashtag_dev -c "$(node ../createTable.js)"

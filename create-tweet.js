@@ -1,4 +1,4 @@
-var selectQuery = require('./select-query')
+var selectQuery = require('./query')
 
 var sql = require('sql')
 
