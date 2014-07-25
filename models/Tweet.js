@@ -1,16 +1,11 @@
-function Tweet(args){
-  this.id = args.id,
-  this.username = args.username,
-  this.content = args.content,
-  this.longitude = args.longitude,
-  this.latitude = args.latitude,
-  this.twitter_id = args.twitter_id,
-  this.location = args.location,
-  this.stars = args.stars,
-  this.created_at = new Date().toString(),
-  this.updated_at = new Date().toString()
-}
+// function Tweet(twitterTweet){
+//   this.username = twitterTweet.user.screen_name,
+//   this.content = twitterTweet.text,
+//   this.latitude = twitterTweet.coordinates[0],
+//   this.longitude = twitterTweet.coordinates[1],
+//   this.twitter_id = twitterTweet.id_str,
+//   this.location = twitterTweet.user.location,
+//   this.stars = twitterTweet.favorite_count
+// }
 
-module.exports.Tweet = {
-
-}
+// module.exports = TweetModel;

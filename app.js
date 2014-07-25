@@ -11,8 +11,8 @@ var db = orm.connect(process.env.DATABASE_URL || "postgres://apprentice@localhos
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
-
 var app = express();
+var Tweet;
 
 
 // view engine setup
@@ -42,17 +42,14 @@ db.on("connect", function (err) {
         console.log("something is wrong with the database connection", err);
         return;
     }
-    var Tweet = db.define('tweets', {
-        id          : { type: "integer" },
+    Tweet = db.define('tweets', {
         username    : { type: "text" },
         content     : { type: "text" },
         longitude   : { type: "number" },
         latitude    : { type: "number" },
         twitter_id  : { type: "text" },
         location    : { type: "text" },
-        stars       : { type: "integer" },
-        created_at  : { type: "date" },
-        updated_at  : { type: "date" }
+        stars       : { type: "integer" }
     });
 
     Tweet.find({
@@ -66,6 +63,18 @@ db.on("connect", function (err) {
             console.log(tweets[0].content);
         }
     })
+})
+
+app.set('createTweet', function(newTweet){
+    Tweet.create(newTweet, function(err, results) {
+        if(err) {
+            console.log(err)
+        }
+        else {
+            console.log('tweet created');
+            console.log(results);
+        }
+    });
 })
 
 /// catch 404 and forward to error handler
