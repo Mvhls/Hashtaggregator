@@ -1,30 +1,40 @@
-var pg = require('pg')
-var conString = (process.env.DATABASE_URL || "postgres://apprentice@localhost/hashtag_dev");
+var selectQuery = require('./select-query')
+
+var sql = require('sql')
+
+var tweetTable = require('./schema')
+var tweetSQL = sql.define({
+  name: tweetTable.name,
+  columns: tweetTable.columns
+});
 
 module.exports = function(tweet, cb) {
-  pg.connect(conString, function(err, client, done) {
-    if(err) {
-      return console.error('error fetching client from pool', err);
-    }
-    client.query(sql, function(err, result) {
-      //call `done()` to release the client back to the pool
-      done();
+
+  var query = tweetSQL.insert(tweet).toQuery()
+  console.log(query)
+
+  selectQuery(query, function(err, result) {
 
       if(err) return cb(err)
 
-      cb(null, result.rows[0].number);
+      cb(null, "tweet created");
       //output: 1
     });
-  });
-
-
 }
 
-
-
 if(process.argv[1] === __filename) {
-  module.exports('SELECT * from tweets', function(err, data) {
-    if(err) return console.error(err);
-    console.log(data);
+    var tweetToStuff = {
+    username: 'Bob'
+  , content: 'Havashava'
+  , longitude: 70.5
+  , latitude: 80.4
+  , twitter_id: '312423'
+  , location: 'chicago, il'
+  , stars: 1
+  }
+
+  module.exports(tweetToStuff, function(err, data) {
+      if(err) return console.error(err);
+      console.log(data);
   })
 }

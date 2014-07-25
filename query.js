@@ -6,13 +6,14 @@ module.exports = function(sql, cb) {
     if(err) {
       return console.error('error fetching client from pool', err);
     }
+
     client.query(sql, function(err, result) {
       //call `done()` to release the client back to the pool
       done();
 
       if(err) return cb(err)
 
-      cb(null, result.rows[0].number);
+      cb(null, result);
       //output: 1
     });
   });
@@ -23,8 +24,16 @@ module.exports = function(sql, cb) {
 
 
 if(process.argv[1] === __filename) {
-  module.exports('SELECT * from tweets', function(err, data) {
+
+  module.exports({text: 'INSERT INTO "tweets" ("username") VALUES ($1)', values: ['234']}, function(err, data) {
     if(err) return console.error(err);
-    console.log(data);
+    console.log(data.rows);
+
+    module.exports('SELECT * from tweets', function(err, data) {
+      if(err) return console.error(err);
+      console.log(data.rows);
+    })
   })
+
+
 }
