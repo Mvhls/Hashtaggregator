@@ -9,11 +9,11 @@ module.exports = {
     },
     {
       name: 'username',
-      dataType: 'character'
+      dataType: 'character varying(255)'
     },
     {
       name: 'content',
-      dataType: 'character'
+      dataType: 'character varying(255)'
     },
     {
       name: 'longitude',
@@ -25,11 +25,11 @@ module.exports = {
     },
     {
       name: 'twitter_id',
-      dataType: 'character'
+      dataType: 'character varying(255)'
     },
     {
       name: 'location',
-      dataType: 'character'
+      dataType: 'character varying(255)'
     },
     {
       name: 'stars',
