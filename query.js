@@ -1,5 +1,5 @@
 var pg = require('pg')
-var conString = (process.env.DATABASE_URL || "postgres://apprentice@localhost/hashtag_dev");
+var conString = (process.env.DATABASE_URL || "postgres://apprentice@localhost/source_development");
 
 module.exports = function(sql, cb) {
   pg.connect(conString, function(err, client, done) {
