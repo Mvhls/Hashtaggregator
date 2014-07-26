@@ -11,7 +11,7 @@ var T = new Twit({
 module.exports = function(err, cb) {
   if(err) return cb(err)
   var stream = T.stream('statuses/filter', {
-    track: '#Science'
+    track: require('./hashtag')
   });
   return stream;
 };
