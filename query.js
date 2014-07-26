@@ -1,3 +1,5 @@
+// Function that connects to and queries the database with the sql statement passed to it
+
 var pg = require('pg')
 var conString = (process.env.DATABASE_URL || "postgres://apprentice@localhost/source_development");
 
