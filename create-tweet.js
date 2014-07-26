@@ -1,7 +1,5 @@
-var selectQuery = require('./query')
-
+var dbQuery = require('./query')
 var sql = require('sql')
-
 var tweetTable = require('./schema')
 var tweetSQL = sql.define({
   name: tweetTable.name,
@@ -13,7 +11,7 @@ module.exports = function(tweet, cb) {
   var query = tweetSQL.insert(tweet).toQuery()
   console.log(query)
 
-  selectQuery(query, function(err, result) {
+  dbQuery(query, function(err, result) {
 
       if(err) return cb(err)
 
@@ -23,7 +21,7 @@ module.exports = function(tweet, cb) {
 }
 
 if(process.argv[1] === __filename) {
-    var tweetToStuff = {
+    var tweetObjectToSave = {
     username: 'Bob'
   , content: 'Havashava'
   , longitude: 70.5
@@ -33,7 +31,7 @@ if(process.argv[1] === __filename) {
   , stars: 1
   }
 
-  module.exports(tweetToStuff, function(err, data) {
+  module.exports(tweetObjectToSave, function(err, data) {
       if(err) return console.error(err);
       console.log(data);
   })

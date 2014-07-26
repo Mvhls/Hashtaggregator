@@ -8,12 +8,15 @@ var T = new Twit({
   access_token_secret: process.env.access_token_secret
 });
 
-var stream = T.stream('statuses/filter', {
-  track: '#Science'
-});
-
-module.exports = function() {
-  stream.on('tweet', function(tweet) {
-  console.log(tweet);
+module.exports = function(err, cb) {
+  var stream = T.stream('statuses/filter', {
+    track: '#Science'
   });
 };
+
+  // if (err) return cb(err);
+  // stream.on('tweet', function(tweet) {
+  //   cb(null, tweet)
+  // });
+
+   // save_tweet(objectify(tweet))
