@@ -17,8 +17,6 @@ module.exports = function(sql, cb) {
       //output: 1
     });
   });
-
-
 }
 
 

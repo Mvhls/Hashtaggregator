@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var orm = require('orm');
 var pg = require('pg');
 var db = orm.connect(process.env.DATABASE_URL
-  || "postgres://apprentice@localhost/source_development");
+  || "postgres://Stu@localhost/source_development");
 // var TweetSchema = require('.models/TweetSchema')
 var routes = require('./routes/index');
 var app = express();
