@@ -9,14 +9,9 @@ var T = new Twit({
 });
 
 module.exports = function(err, cb) {
+  if(err) return cb(err)
   var stream = T.stream('statuses/filter', {
     track: '#Science'
   });
+  return stream;
 };
-
-  // if (err) return cb(err);
-  // stream.on('tweet', function(tweet) {
-  //   cb(null, tweet)
-  // });
-
-   // save_tweet(objectify(tweet))

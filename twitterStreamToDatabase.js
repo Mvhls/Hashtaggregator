@@ -1,6 +1,7 @@
-var stream = require('./twitterStream');
+var twitterStream = require('./twitterStream');
 var createTweet = require('./create-tweet');
 var objectifyTweet = require('./objectifyTweet');
+var stream = stream();
 
 module.exports = function(err, cb) {
   if (err) return cb(err);
@@ -11,6 +12,5 @@ module.exports = function(err, cb) {
         console.log(data);
       })
     })
-    cb(null, tweet);
   });
 };
