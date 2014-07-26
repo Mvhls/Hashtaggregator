@@ -1,3 +1,0 @@
-class Tweet < ActiveRecord::Base
-	validates :twitter_id, uniqueness: true
-end
