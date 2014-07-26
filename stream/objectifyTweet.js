@@ -5,8 +5,8 @@ module.exports = function(tweet, cb) {
     newTweetObject = {
       username: tweet.user.screen_name,
       content: tweet.text,
-      latitude: tweet.coordinates.coordinates[0],
-      longitude: tweet.coordinates.coordinates[1],
+      longitude: tweet.coordinates.coordinates[0],
+      latitude: tweet.coordinates.coordinates[1],
       twitter_id: tweet.id_str,
       location: tweet.user.location,
       stars: tweet.favorite_count
@@ -15,8 +15,8 @@ module.exports = function(tweet, cb) {
     newTweetObject = {
       username: tweet.user.screen_name,
       content: tweet.text,
-      latitude: 0,
-      longitude: 0,
+      // latitude: 0,
+      // longitude: 0,
       twitter_id: tweet.id_str,
       location: tweet.user.location,
       stars: tweet.favorite_count

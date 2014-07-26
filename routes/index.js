@@ -6,9 +6,8 @@ var stream = require('../start-stream')
  // GET home page.
 router.get('/', function(req, res) {
 
-  // stream();
   res.render('index', {
-    title: 'Stuville'
+    title: 'Stuville | Hashtaggregator'
   });
 
 });

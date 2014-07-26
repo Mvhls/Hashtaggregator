@@ -4,11 +4,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 // Database Requires
-var orm = require('orm');
 var pg = require('pg');
-var db = orm.connect(process.env.DATABASE_URL
-  || "postgres://Stu@localhost/source_development");
-// var TweetSchema = require('.models/TweetSchema')
 var routes = require('./routes/index');
 var app = express();
 
@@ -22,6 +18,13 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
+
+
+
+
+
+
+
 
 
 

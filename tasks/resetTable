@@ -1,5 +1,5 @@
 #!/bin/bash
 
-psql hashtag_dev -c "DROP TABLE tweets"
+psql source_development -c "DROP TABLE tweets"
 
-psql hashtag_dev -c "$(node ../createTable.js)"
+psql source_development -c "$(node ./tasks/createTable.js)"

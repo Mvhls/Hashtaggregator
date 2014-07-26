@@ -1,6 +1,8 @@
-var dbQuery = require('./query')
+// Insert Tweet object into database
+
+var dbQuery = require('../query')
 var sql = require('sql')
-var tweetTable = require('./schema')
+var tweetTable = require('../tasks/schema')
 var tweetSQL = sql.define({
   name: tweetTable.name,
   columns: tweetTable.columns
