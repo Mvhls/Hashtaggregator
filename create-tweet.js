@@ -12,18 +12,6 @@ module.exports = function(tweet, cb) {
 
   var query = tweetSQL.insert(tweet).toQuery()
 
-  // tweetSQL
-  //   .select('*')
-  //   .where(
-  //     tweetSQL
-  //     .created_at
-  //     .isGreaterThan(
-  //       new Date().getTime()
-  //     )
-  //   ).toQuery()
-
-
-
   console.log(query)
 
   selectQuery(query, function(err, result) {

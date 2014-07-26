@@ -7,26 +7,27 @@ var tweetSQL = sql.define({
 });
 
 module.exports = function(cb) {
-  var oldTime = new Date() - 5000
-  var checkTime = new Date(oldTime)
 
-  query = tweetSQL
+  var oldTime = new Date() - 10000
+  var checkTime = new Date(oldTime).toString()
+  console.log(checkTime)
+
+  var query = tweetSQL
     .select('*')
+    .from(tweetSQL)
     .where(
-      tweetSQL
-      .created_at
-      .isGreaterThan(
-        (checkTime)
-      )
+      tweetSQL.created_at.gt(checkTime)
     ).toQuery()
+
   var results = selectQuery(query)
+  console.log(query)
   console.log("iamhere")
   return results
   console.log(results)
 
   if(err) return cb(err)
 
-  cb(null, "tweet created");
+  cb(null, "tweets found");
 
 }
 
