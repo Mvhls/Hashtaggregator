@@ -2,22 +2,21 @@
 
 var dbQuery = require('./query')
 var sql = require('sql')
-// var tweetTable = require('./schema')
-// var tweetSQL = sql.define({
-//   name: tweetTable.name,
-//   columns: tweetTable.columns
-// });
+// GLOBAL VAR
+lastTweet = 100000;
 
 module.exports = function(err, cb) {
   if(err) return cb(err);
 
-  var oldTime = new Date() - 10000;
-  var checkTime = new Date(oldTime).toString();
-  console.log(checkTime);
+  // var oldTime = new Date() - 10000;
+  // var checkTime = new Date(oldTime).toString();
+  // console.log(checkTime);
+  console.log(lastTweet);
+
   var query = {
-    text: 'SELECT * FROM "tweets" WHERE ("tweets"."created_at" > $1)',
-    values: [ checkTime ]
-  }
+    text: 'SELECT * FROM "tweets" WHERE ("tweets"."id" = $1)',
+    values: [ lastTweet ]
+  };
 
 
   // var query = tweetSQL
@@ -27,11 +26,11 @@ module.exports = function(err, cb) {
   //     tweetSQL.created_at.gt(checkTime)
   //   ).toQuery()
 
-  var results = dbQuery(query)
+  var results = dbQuery(query, cb);
   // console.log(query)
-  console.log("iamhere");
+  console.log("line 31");
   // if (results) return results;
-  console.log(results)
+  console.log(results);
 
 
   cb(null, results);
@@ -43,5 +42,5 @@ if(process.argv[1] === __filename) {
   module.exports(null, function(err, results) {
     if(err) return console.error(err);
     console.log(results);
-  })
-}
+  });
+};

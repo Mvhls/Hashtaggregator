@@ -35,5 +35,9 @@ if(process.argv[1] === __filename) {
     })
   })
 
-
+// var results = dbQuery(query, function(err, data) {
+  //   console.log('in the query')
+  //   if(err) return console.error(err);
+  //   return data.rows;
+  // });
 }
