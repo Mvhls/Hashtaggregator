@@ -13,7 +13,7 @@ module.exports = function(sql, cb) {
       //call `done()` to release the client back to the pool
       done();
 
-      if(err) return cb(err)
+      if(err) return console.error(err)
 
       cb(null, result);
       //output: 1

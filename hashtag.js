@@ -1,1 +1,1 @@
-module.exports = '#myworstbirthday';
+module.exports = '#SDCC';

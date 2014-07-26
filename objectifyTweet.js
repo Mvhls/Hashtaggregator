@@ -1,14 +1,28 @@
 module.exports = function(tweet, cb) {
-  tweet.coordinates = tweet.coordinates || [40.7127, 74.0059];
-  newTweetObject = {
-    username: tweet.user.screen_name,
-    content: tweet.text,
-    latitude: tweet.coordinates[0],
-    longitude: tweet.coordinates[1],
-    twitter_id: tweet.id_str,
-    location: tweet.user.location,
-    stars: tweet.favorite_count
+  if (tweet.coordinates) {
+    console.log(tweet);
+
+    newTweetObject = {
+      username: tweet.user.screen_name,
+      content: tweet.text,
+      latitude: tweet.coordinates.coordinates[0],
+      longitude: tweet.coordinates.coordinates[1],
+      twitter_id: tweet.id_str,
+      location: tweet.user.location,
+      stars: tweet.favorite_count
+    }
+  } else {
+    newTweetObject = {
+      username: tweet.user.screen_name,
+      content: tweet.text,
+      latitude: 0,
+      longitude: 0,
+      twitter_id: tweet.id_str,
+      location: tweet.user.location,
+      stars: tweet.favorite_count
+    }
   }
+
   cb(null, newTweetObject);
 }
 

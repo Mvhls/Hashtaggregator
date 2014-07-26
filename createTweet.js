@@ -7,19 +7,18 @@ var tweetSQL = sql.define({
 });
 
 module.exports = function(tweet, cb) {
-
   var query = tweetSQL.insert(tweet).toQuery()
-
-  console.log(query)
 
   dbQuery(query, function(err, result) {
 
-      if(err) return cb(err)
+    if(err) return cb(err)
 
-      cb(null, "tweet created");
-      //output: 1
-    });
+    cb(null, "tweet created");
+
+  });
 }
+
+// TEST =================================
 
 if(process.argv[1] === __filename) {
     var tweetObjectToSave = {

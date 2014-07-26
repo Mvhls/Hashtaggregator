@@ -1,5 +1,5 @@
 var twitterStream = require('./twitterStream');
-var createTweet = require('./create-tweet');
+var createTweet = require('./createTweet');
 var objectifyTweet = require('./objectifyTweet');
 var stream = twitterStream();
 
@@ -9,7 +9,7 @@ module.exports = function(err, cb) {
     objectifyTweet(tweet, function(err, tweetObject) {
       if (err) return console.error(err);
       createTweet(tweetObject, function(err, data) {
-        console.log(data);
+        console.log('saved');
       })
     })
   });

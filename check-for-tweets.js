@@ -30,17 +30,17 @@ module.exports = function(err, cb) {
   var results = dbQuery(query)
   // console.log(query)
   console.log("iamhere");
-  if (results) return results;
+  // if (results) return results;
   console.log(results)
 
 
-  cb(null, "tweets found");
+  cb(null, results);
 
 }
 
 if(process.argv[1] === __filename) {
 
-  module.exports(err, function(err, results) {
+  module.exports(null, function(err, results) {
     if(err) return console.error(err);
     console.log(results);
   })
