@@ -1,5 +1,5 @@
 function Tweet(twitterTweet){
-  this.username = twitterTweet.user.screen_name,
+  this.username = twitterTweet.
   this.content = twitterTweet.text,
   this.latitude = twitterTweet.coordinates[0],
   this.longitude = twitterTweet.coordinates[1],
