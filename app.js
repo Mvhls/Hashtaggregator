@@ -23,35 +23,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 
-// database connection
 
-db.on("connect", function(err) {
-  console.log('trying to connect to database...')
-
-  if(err) {
-      console.log("something is wrong with the database connection", err);
-      return;
-  }
-
-  db.load("./models/TweetSchema", function(err) {
-    if (err) {
-      console.log('TweetSchema not loaded correctly', err);
-      return;
-    }
-    console.log(db.models.tweets);
-  })
-
-  db.models.tweets.find({
-    username: "zachpflederer"
-  }, function(err, tweets) {
-    if(err) {
-      console.log(err)
-    }
-    else {
-      console.log(tweets);
-    }
-  })
-})
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
