@@ -61,8 +61,7 @@ io.sockets.on('connection', function(client) {
                 client.emit('sendTweets', tweet);
             })
             // update lastTweetID
-            console.log('setting lastTweetID...')
-            console.log(lastTweetID)
+            console.log('setting lastTweetID...' + lastTweetID)
             getLastTweetID(function(err, id) {
                 if (err) return console.error(err);
                 lastTweetID = id;
