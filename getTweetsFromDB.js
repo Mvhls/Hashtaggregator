@@ -11,13 +11,17 @@ module.exports = function(err, cb) {
 
   var query = {
     text: 'SELECT * FROM "tweets" WHERE ("tweets"."id" > $1)',
-    values: [ 1234 ]
+    values: [ 100000 ]
   };
 
   var results = dbQuery(query, function(err, data) {
     // newLastTweet = data.rows[data.rows.length - 1].id;
     // server.emit('newLastTweet', newLastTweet);
-    cb(null, data.rows);
+    geoTweets = []
+    data.rows.forEach(function(tweet) {
+      if (tweet.latitude) geoTweets.push(tweet);
+    })
+    cb(null, geoTweets);
   });
 }
 
