@@ -1,2 +1,2 @@
 web: node app.js
-stream: node runStream.js
+worker: node runStream.js
