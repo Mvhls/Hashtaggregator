@@ -6,7 +6,12 @@ var bodyParser = require('body-parser');
 // Database Requires
 var pg = require('pg');
 var routes = require('./routes/index');
-var app = express();
+var backEndServer = require('events').EventEmitter
+
+var app = express()
+,   http = require('http')
+,   server = http.createServer(app)
+,   io = require('socket.io').listen(server);
 
 
 // view engine setup
@@ -19,13 +24,23 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 
+// Server
 
+// heroku starts the file
 
+// listen for connections from clients
+io.sockets.on('connection', function(client) {
 
+    // on connection, serve all the tweets from the db
+    client.on('connect', require('./getTweetsFromDB'));
 
+    // listen for new tweets to be created
+    backEndServer.on('newTweet', function(tweet) {
 
-
-
+        // send those tweets to client
+        io.sockets.broadcast.emit('tweetToClient', tweet)
+    })
+})
 
 
 /// catch 404 and forward to error handler

@@ -1,3 +1,5 @@
+var emitter = require('events').EventEmitter
+
 module.exports = function(tweet, cb) {
   if (tweet.coordinates) {
     console.log(tweet);
@@ -23,6 +25,7 @@ module.exports = function(tweet, cb) {
     }
   }
 
+  emitter.emit('newTweet', newTweetObject);
   cb(null, newTweetObject);
 }
 
