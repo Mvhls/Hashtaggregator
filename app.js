@@ -7,8 +7,11 @@ var bodyParser = require('body-parser');
 // Database Requires
 var pg = require('pg');
 var routes = require('./routes/index');
-
-var allTweets = require('./getTweetsFromDB')
+// Custom Query Functions
+var getAllTweetsFromDB = require('./tasks/getAllTweetsFromDB');
+var getNewTweets = require('./tasks/getNewTweets');
+var getLastTweetID = require('./tasks/getLastTweetID');
+var lastTweetID = 0;
 
 var app = new express()
 ,   http = require('http')
@@ -32,22 +35,38 @@ app.use('/', routes);
 
 // listen for connections from clients
 io.sockets.on('connection', function(client) {
+
     // on connection, serve all the tweets from the db
-    require('./getTweetsFromDB')(null, function(err, results) {
-        if(err) return console.error(err);
-        // find id of last tweet in database
-        // send tweets to view
-        results.forEach(function(tweet) {
-            client.emit('sendTweets', tweet);
-        })
-    })
-
-    // listen for new tweets to be created
-    // tweetEvents.on('newTweet', function(tweet) {
-
-        // send those tweets to client
-        // client.emit('sendTweets', tweet)
+    // getAllTweetsFromDB(null, function(err, results) {
+    //     if(err) return console.error(err);
+    //     // send tweets to view
+    //     results.forEach(function(tweet) {
+    //         client.emit('sendTweets', tweet);
+    //     })
+    //     // save id of last tweet sent to client on connection
+    //     lastTweetID = getLastTweetID(function(err, id) {
+    //         if (err) return console.error(err);
+    //         return id;
+    //     });
     // })
+
+    // periodically check db for new tweets
+    function sendNewTweets() {
+        getNewTweets(null, lastTweetID, function(err, newTweets) {
+            if(err) return console.error(err);
+            // send tweets to view
+            newTweets.forEach(function(tweet) {
+                client.emit('sendTweets', tweet);
+            })
+            lastTweetID = getLastTweetID(function(err, id) {
+                if (err) return console.error(err);
+                return id;
+            });
+        })
+    }
+
+    setInterval(sendNewTweets, 1000);
+
 })
 
 
