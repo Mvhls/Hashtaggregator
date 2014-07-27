@@ -4,18 +4,19 @@
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <div id="map"></div>
 
+
+<!-- load javascripts at end of document for faster page load -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script type = "text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
     <script type = "text/javascript" src="/javascripts/map.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script type="text/javascript">window.socket = io.connect();</script>
     <script type = "text/javascript" src="/javascripts/main.js"></script>
-
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-    <div id="map"></div>
   </body>
 </html>

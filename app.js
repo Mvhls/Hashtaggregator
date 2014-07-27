@@ -35,7 +35,7 @@ app.use('/', routes);
 
 // listen for connections from clients
 io.sockets.on('connection', function(client) {
-
+    client.lastTweetID = lastTweetID;
     // on connection, serve all the tweets from the db
     // getAllTweetsFromDB(null, function(err, results) {
     //     if(err) return console.error(err);
@@ -52,20 +52,21 @@ io.sockets.on('connection', function(client) {
 
     // periodically check db for new tweets
     function sendNewTweets() {
-        getNewTweets(null, lastTweetID, function(err, newTweets) {
+        getNewTweets(null, client.lastTweetID, function(err, newTweets) {
             if(err) return console.error(err);
             // send tweets to view
             newTweets.forEach(function(tweet) {
                 client.emit('sendTweets', tweet);
             })
-            lastTweetID = getLastTweetID(function(err, id) {
+            // update client.lastTweetID
+            client.lastTweetID = getLastTweetID(function(err, id) {
                 if (err) return console.error(err);
                 return id;
             });
         })
     }
 
-    setInterval(sendNewTweets, 1000);
+    setInterval(sendNewTweets, 10000);
 
 })
 

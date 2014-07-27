@@ -3,8 +3,9 @@ $(document).ready(function () {
 
   console.log('loading main.js');
 
+  console.log(createTweetObject);
   socket.on('sendTweets', function(data) {
-    console.log(data);
+    createTweetObject(data);
   });
 
 })
