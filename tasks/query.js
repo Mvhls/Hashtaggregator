@@ -2,6 +2,7 @@
 
 var pg = require('pg')
 var conString = (process.env.DATABASE_URL || "postgres://apprentice@localhost/source_development");
+console.log(process.env.DATABASE_URL);
 
 module.exports = function(sql, cb) {
   pg.connect(conString, function(err, client, done) {
