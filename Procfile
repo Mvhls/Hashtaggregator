@@ -1,2 +1,2 @@
 web: node app.js
-stream: node twitterStreamToDatabase.js
+stream: node ./stream/twitterStreamToDatabase.js
