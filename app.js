@@ -11,7 +11,6 @@ var routes = require('./routes/index');
 var getAllTweetsFromDB = require('./tasks/getAllTweetsFromDB');
 var getNewTweets = require('./tasks/getNewTweets');
 var getLastTweetID = require('./tasks/getLastTweetID');
-var lastTweetID = 0;
 
 var app = new express()
 ,   http = require('http')
@@ -35,33 +34,38 @@ app.use('/', routes);
 
 // listen for connections from clients
 io.sockets.on('connection', function(client) {
-    client.lastTweetID = lastTweetID;
+    var lastTweetID = 0;
+    console.log('client connected...');
+
     // on connection, serve all the tweets from the db
-    // getAllTweetsFromDB(null, function(err, results) {
-    //     if(err) return console.error(err);
-    //     // send tweets to view
-    //     results.forEach(function(tweet) {
-    //         client.emit('sendTweets', tweet);
-    //     })
-    //     // save id of last tweet sent to client on connection
-    //     lastTweetID = getLastTweetID(function(err, id) {
-    //         if (err) return console.error(err);
-    //         return id;
-    //     });
-    // })
+    getAllTweetsFromDB(null, function(err, results) {
+        if(err) return console.error(err);
+        // send tweets to view
+        results.forEach(function(tweet) {
+            client.emit('sendTweets', tweet);
+        })
+        // save id of last tweet sent to client on connection
+        getLastTweetID(function(err, id) {
+            if (err) return console.error(err);
+            lastTweetID = id;
+        });
+    })
 
     // periodically check db for new tweets
     function sendNewTweets() {
-        getNewTweets(null, client.lastTweetID, function(err, newTweets) {
+        console.log('about to get new tweets...')
+        getNewTweets(null, lastTweetID, function(err, newTweets) {
             if(err) return console.error(err);
             // send tweets to view
             newTweets.forEach(function(tweet) {
                 client.emit('sendTweets', tweet);
             })
-            // update client.lastTweetID
-            client.lastTweetID = getLastTweetID(function(err, id) {
+            // update lastTweetID
+            console.log('setting lastTweetID...')
+            console.log(lastTweetID)
+            getLastTweetID(function(err, id) {
                 if (err) return console.error(err);
-                return id;
+                lastTweetID = id;
             });
         })
     }
