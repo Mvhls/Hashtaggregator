@@ -3,7 +3,7 @@ var sql = require('sql');
 var lastTweet;
 
 module.exports = function(cb) {
-  // if(err) return cb(err);
+
   var sql = {
     text: 'SELECT COUNT(*) FROM "tweets"'
   };
@@ -24,7 +24,3 @@ if(process.argv[1] === __filename) {
     process.reallyExit();
   })
 }
-
-// module.exports({text: 'INSERT INTO "tweets" ("username") VALUES ($1)', values: ['234']}, function(err, data) {
-    // if(err) return console.error(err);
-    // console.log(data.rows);
