@@ -1,12 +1,10 @@
 $(document).ready(function () {
+  var socket = window.socket;
 
-  // var server = io();
+  console.log('loading main.js');
 
-  // console.log('loading main.js')
-
-  // server.on('sendTweets', function(data) {
-  //   console.log(data);
-  //   // server.emit('connection', handle, chatroom);
-  // });
+  socket.on('sendTweets', function(data) {
+    console.log(data);
+  });
 
 })

@@ -8,20 +8,12 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script type = "text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
     <script type = "text/javascript" src="/javascripts/map.js"></script>
-    <script type = "text/javascript" src="/javascripts/main.js"></script>
     <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript">window.socket = io.connect();</script>
+    <script type = "text/javascript" src="/javascripts/main.js"></script>
 
   </head>
   <body>
-    <script type="text/javascript">
-      var socket = io.connect();
-
-      console.log('loading main.js');
-
-      socket.on('sendTweets', function(data) {
-        console.log(data);
-      });
-    </script>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
     <div id="map"></div>
