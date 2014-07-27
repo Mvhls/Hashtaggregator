@@ -1,14 +1,17 @@
 var express = require('express');
 var path = require('path');
+var port = process.env.PORT || 3888;
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 // Database Requires
 var pg = require('pg');
 var routes = require('./routes/index');
-var backEndServer = require('events').EventEmitter
+var backEndServer = require('events').EventEmitter;
 
-var app = express()
+var allTweets = require('./getTweetsFromDB')
+
+var app = new express()
 ,   http = require('http')
 ,   server = http.createServer(app)
 ,   io = require('socket.io').listen(server);
@@ -30,16 +33,23 @@ app.use('/', routes);
 
 // listen for connections from clients
 io.sockets.on('connection', function(client) {
-
+    console.log(client);
     // on connection, serve all the tweets from the db
-    client.on('connect', require('./getTweetsFromDB'));
+
+    require('./getTweetsFromDB')(null, function(err, results) {
+        if(err) return console.error(err);
+        results.forEach(function(tweet) {
+            client.emit('sendTweets', tweet);
+        })
+    })
+
 
     // listen for new tweets to be created
-    backEndServer.on('newTweet', function(tweet) {
+    // backEndServer.on('newTweet', function(tweet) {
 
-        // send those tweets to client
-        io.sockets.broadcast.emit('tweetToClient', tweet)
-    })
+    //     // send those tweets to client
+    //     io.sockets.broadcast.emit('tweetToClient', tweet)
+    // })
 })
 
 
@@ -75,4 +85,5 @@ app.use(function(err, req, res, next) {
 });
 
 
-module.exports = app;
+// module.exports = app;
+server.listen(port);

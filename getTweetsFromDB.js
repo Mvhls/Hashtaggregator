@@ -1,21 +1,22 @@
 // Query database for new tweets every ten seconds, and return any that exist
 
-var server = io.connect();
+// var io = require('socket.io').listen(server);
+// var server = io.connect();
 var dbQuery = require('./query');
 var sql = require('sql');
 // var lastTweet = require('./lastTweet'); //returns an integer
 
-module.exports = function(err, lastTweetIDNumber, cb) {
+module.exports = function(err, cb) {
   if(err) return cb(err);
 
   var query = {
     text: 'SELECT * FROM "tweets" WHERE ("tweets"."id" > $1)',
-    values: [ lastTweetIDNumber ]
+    values: [ 1234 ]
   };
 
   var results = dbQuery(query, function(err, data) {
-    newLastTweet = data.rows[data.rows.length - 1].id;
-    server.emit('newLastTweet', newLastTweet);
+    // newLastTweet = data.rows[data.rows.length - 1].id;
+    // server.emit('newLastTweet', newLastTweet);
     cb(null, data.rows);
   });
 }
