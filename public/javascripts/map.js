@@ -1,10 +1,10 @@
 var MAP_IMAGE_LAYER_PATTERN = 'http://{s}.tiles.mapbox.com/v3/mvhls.j254m1nf/{z}/{x}/{y}.png';
 var ArrayMap = [].map;
 
-function Tweet(full_text, handle, latitude, longitude, id) {
+function Tweet(content, username, latitude, longitude, id) {
     this.id = id;
-    this.handle = handle;
-    this.full_text = full_text;
+    this.username = username;
+    this.content = content;
     this.latitude = latitude;
     this.longitude = longitude;
 }
@@ -40,12 +40,13 @@ function Tweet(full_text, handle, latitude, longitude, id) {
 
 
     function display(tweet) {
-        L.circle([tweet.latitude, tweet.longitude], 5000, {
-            color: '#484',
-            fillColor: '#7b7',
-            fillOpacity: 0.5
+        L.circleMarker([tweet.latitude, tweet.longitude], {
+            radius: 7,
+            color: '#486',
+            fillColor: '#7b9',
+            fillOpacity: 0.75
         }).addTo(map)
-            .bindPopup(tweet.username + " said: " + tweet.content);
+            .bindPopup("<a href='https://twitter.com/" + tweet.username + "'>@" + tweet.username + "</a>" + " said: " + tweet.content);
     }
 
 // });
