@@ -1,10 +1,7 @@
-// Query database for new tweets every ten seconds, and return any that exist
+// Query database for all the tweets
 
-// var io = require('socket.io').listen(server);
-// var server = io.connect();
 var dbQuery = require('./query');
 var sql = require('sql');
-// var lastTweet = require('./lastTweet'); //returns an integer
 
 module.exports = function(err, cb) {
   if(err) return cb(err);

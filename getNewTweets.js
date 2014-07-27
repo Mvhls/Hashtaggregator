@@ -1,4 +1,4 @@
-// Query database for new tweets every ten seconds, and return any that exist
+// Query database for new tweets
 
 var dbQuery = require('./query');
 var sql = require('sql');
