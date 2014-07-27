@@ -34,14 +34,14 @@ module.exports = {
     {
       name: 'stars',
       dataType: 'integer'
-    },
-    {
-      name: 'updated_at',
-      dataType: 'time',
-    },
-    {
-      name: 'created_at',
-      dataType: 'time'
-    }
+    }//,
+    // {
+    //   name: 'updated_at',
+    //   dataType: 'time',
+    // },
+    // {
+    //   name: 'created_at',
+    //   dataType: 'time'
+    // }
   ]
 }
