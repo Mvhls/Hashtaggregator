@@ -36,9 +36,18 @@ io.sockets.on('connection', function(client) {
     console.log(client);
     // on connection, serve all the tweets from the db
 
+    function split(a, n) {
+    var len = a.length,out = [], i = 0;
+    while (i < len) {
+        var size = Math.ceil((len - i) / n--);
+        out.push(a.slice(i, i += size));
+        }
+        return out;
+    }
     require('./getTweetsFromDB')(null, function(err, results) {
         if(err) return console.error(err);
-        results.forEach(function(tweet) {
+        var resultsArray  = split(results,1000)
+        resultsArray.forEach(function(tweet) {
             client.emit('sendTweets', tweet);
         })
     })
