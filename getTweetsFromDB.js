@@ -10,8 +10,7 @@ module.exports = function(err, cb) {
   if(err) return cb(err);
 
   var query = {
-    text: 'SELECT * FROM "tweets" WHERE ("tweets"."id" > $1)',
-    values: [ 100000 ]
+    text: 'SELECT * FROM "tweets"'
   };
 
   var results = dbQuery(query, function(err, data) {
