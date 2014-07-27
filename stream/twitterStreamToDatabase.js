@@ -1,5 +1,4 @@
 // Handles the whole process of streaming from twitter to the database
-
 var twitterStream = require('./twitterStream');
 var createTweet = require('./createTweet');
 var objectifyTweet = require('./objectifyTweet');
@@ -11,7 +10,7 @@ module.exports = function(err, cb) {
     objectifyTweet(tweet, function(err, tweetObject) {
       if (err) return console.error(err);
       createTweet(tweetObject, function(err, data) {
-        console.log('saved');
+        console.log(data.content);
       })
     })
   });

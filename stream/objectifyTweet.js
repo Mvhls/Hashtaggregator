@@ -1,4 +1,3 @@
-var emitter = require('events').EventEmitter
 
 module.exports = function(tweet, cb) {
   if (tweet.coordinates) {
@@ -17,20 +16,16 @@ module.exports = function(tweet, cb) {
     newTweetObject = {
       username: tweet.user.screen_name,
       content: tweet.text,
-      // latitude: 0,
-      // longitude: 0,
       twitter_id: tweet.id_str,
       location: tweet.user.location,
       stars: tweet.favorite_count
     }
   }
-
-  emitter.emit('newTweet', newTweetObject);
   cb(null, newTweetObject);
 }
 
 
-// TEST
+// TEST =========================================
 
 if(process.argv[1] === __filename) {
   var rawTweet = {

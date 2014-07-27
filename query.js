@@ -14,14 +14,12 @@ module.exports = function(sql, cb) {
       done();
 
       if(err) return console.error(err)
-
       cb(null, result);
-      //output: 1
     });
   });
 }
 
-
+// TEST ================================
 
 if(process.argv[1] === __filename) {
 
@@ -34,10 +32,4 @@ if(process.argv[1] === __filename) {
       console.log(data.rows);
     })
   })
-
-// var results = dbQuery(query, function(err, data) {
-  //   console.log('in the query')
-  //   if(err) return console.error(err);
-  //   return data.rows;
-  // });
 }
