@@ -2,6 +2,8 @@
 
 var Twit = require('twit');
 
+console.log(process.env.consumer_key);
+
 var T = new Twit({
   consumer_key: process.env.consumer_key,
   consumer_secret: process.env.consumer_secret,
