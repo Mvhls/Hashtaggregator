@@ -7,5 +7,3 @@ function Tweet(twitterTweet){
   this.location = twitterTweet.location,
   this.stars = twitterTweet.stars
 }
-
-module.exports = Tweet;
