@@ -1,3 +1,4 @@
+updateTweet = require('./updateTweet')
 
 module.exports = function(tweet, cb) {
   if (tweet.coordinates) {
@@ -20,6 +21,16 @@ module.exports = function(tweet, cb) {
       location: tweet.user.location,
       stars: tweet.favorite_count
     }
+  }
+  if (tweet.retweeted_status) {
+    var finderID = retweeted_status.id;
+    var retweets = retweeted_status.retweet_count;
+    var favorites = retweeted_status.favorite_count;
+    var stars = (retweets + favorites);
+    updateTweet(null, finderID, stars, function(err, data) {
+      if (err) return console.error(err);
+      console.log(data);
+    })
   }
   cb(null, newTweetObject);
 }
