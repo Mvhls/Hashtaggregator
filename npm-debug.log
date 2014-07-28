@@ -1,0 +1,70 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/Cellar/node/0.10.24/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'jasmine-fixtures',
+1 verbose cli   '--save' ]
+2 info using npm@1.3.21
+3 info using node@v0.10.24
+4 warn package.json http@0.0.0 http is also the name of a node core module.
+5 warn package.json http@0.0.0 No description
+6 warn package.json http@0.0.0 No repository field.
+7 verbose readDependencies using package.json deps
+8 verbose cache add [ 'jasmine-fixtures', null ]
+9 verbose cache add name=undefined spec="jasmine-fixtures" args=["jasmine-fixtures",null]
+10 verbose parsed url { protocol: null,
+10 verbose parsed url   slashes: null,
+10 verbose parsed url   auth: null,
+10 verbose parsed url   host: null,
+10 verbose parsed url   port: null,
+10 verbose parsed url   hostname: null,
+10 verbose parsed url   hash: null,
+10 verbose parsed url   search: null,
+10 verbose parsed url   query: null,
+10 verbose parsed url   pathname: 'jasmine-fixtures',
+10 verbose parsed url   path: 'jasmine-fixtures',
+10 verbose parsed url   href: 'jasmine-fixtures' }
+11 silly lockFile fe8ff0fa-jasmine-fixtures jasmine-fixtures
+12 verbose lock jasmine-fixtures /Users/apprentice/.npm/fe8ff0fa-jasmine-fixtures.lock
+13 silly lockFile fe8ff0fa-jasmine-fixtures jasmine-fixtures
+14 silly lockFile fe8ff0fa-jasmine-fixtures jasmine-fixtures
+15 verbose addNamed [ 'jasmine-fixtures', '' ]
+16 verbose addNamed [ null, '*' ]
+17 silly lockFile df0e94f2-jasmine-fixtures jasmine-fixtures@
+18 verbose lock jasmine-fixtures@ /Users/apprentice/.npm/df0e94f2-jasmine-fixtures.lock
+19 silly addNameRange { name: 'jasmine-fixtures', range: '*', hasData: false }
+20 verbose url raw jasmine-fixtures
+21 verbose url resolving [ 'https://registry.npmjs.org/', './jasmine-fixtures' ]
+22 verbose url resolved https://registry.npmjs.org/jasmine-fixtures
+23 info trying registry request attempt 1 at 12:26:24
+24 http GET https://registry.npmjs.org/jasmine-fixtures
+25 http 404 https://registry.npmjs.org/jasmine-fixtures
+26 silly registry.get cb [ 404,
+26 silly registry.get   { date: 'Mon, 28 Jul 2014 17:26:23 GMT',
+26 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+26 silly registry.get     'content-type': 'application/json',
+26 silly registry.get     'cache-control': 'max-age=0',
+26 silly registry.get     'content-length': '52',
+26 silly registry.get     'accept-ranges': 'bytes',
+26 silly registry.get     via: '1.1 varnish',
+26 silly registry.get     age: '0',
+26 silly registry.get     'x-served-by': 'cache-ord1728-ORD',
+26 silly registry.get     'x-cache': 'MISS',
+26 silly registry.get     'x-cache-hits': '0',
+26 silly registry.get     'x-timer': 'S1406568383.008380,VS0,VE135',
+26 silly registry.get     'keep-alive': 'timeout=10, max=50',
+26 silly registry.get     connection: 'Keep-Alive' } ]
+27 silly lockFile df0e94f2-jasmine-fixtures jasmine-fixtures@
+28 silly lockFile df0e94f2-jasmine-fixtures jasmine-fixtures@
+29 error 404 'jasmine-fixtures' is not in the npm registry.
+29 error 404 You should bug the author to publish it
+29 error 404
+29 error 404 Note that you can also install from a
+29 error 404 tarball, folder, or http url, or git url.
+30 error System Darwin 13.3.0
+31 error command "/usr/local/Cellar/node/0.10.24/bin/node" "/usr/local/bin/npm" "install" "jasmine-fixtures" "--save"
+32 error cwd /Users/apprentice/hashtaggregate
+33 error node -v v0.10.24
+34 error npm -v 1.3.21
+35 error code E404
+36 verbose exit [ 1, true ]

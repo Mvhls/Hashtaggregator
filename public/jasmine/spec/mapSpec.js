@@ -1,8 +1,9 @@
-describe("Tweet", function() {
-  var tweet;
+describe ("map.js", function() {
+  var tweet, tweetishObject;
 
   beforeEach(function() {
-    tweet = new Tweet({
+    jasmine.getFixtures().fixturesPath = './spec/fixtures';
+    tweetishObject = {
       id: 1,
       username: "bob",
       content: "tweet tweet said the bobolink",
@@ -11,16 +12,37 @@ describe("Tweet", function() {
       twitter_id: "9048750982374098234",
       location: "Chicago, IL",
       stars: 1
+    };
+  });
+
+  describe ('function createTweetObject(tweet)', function() {
+    it('returns a Tweet', function() {
+      expect(createTweetObject(tweetishObject) instanceof Tweet).toBe(true);
     });
   });
 
-  it("is a Tweet", function() {
-    console.log(tweet.created_at)
-    expect(tweet instanceof Tweet).toBe(true);
-  });
+  // describe ('function display(tweet)', function() {
+  //   it ('creates a circleMarker', function() {
+  //     loadFixtures('map.html');
+  //     MAP_IMAGE_LAYER_PATTERN = 'http://{s}.tiles.mapbox.com/v3/mvhls.j254m1nf/{z}/{x}/{y}.png';
+  //     map = L.map('map', {
+  //           center: [41.84, -87.65],
+  //           zoom: 5,
+  //           scrollWheelZoom: true
+  //           // zoomControl: false
+  //       });
+  //     console.log(map)
 
-  it("should store the correct information", function() {
-    expect(tweet.username).toBe("bob");
-    expect(tweet.content).toBe("tweet tweet said the bobolink");
-  });
+  //     L.tileLayer(MAP_IMAGE_LAYER_PATTERN, {
+  //         maxZoom: 18,
+  //     }).addTo(map);
+
+  //     var tweet = createTweetObject(tweetishObject);
+  //     console.log(tweet)
+  //     console.log(L.circleMarker)
+  //     spyOn(L, 'circleMarker');
+  //     display(tweet);
+  //     // expect('g').toBeVisible();
+  //   })
+  // })
 });

@@ -1,44 +1,55 @@
 var MAP_IMAGE_LAYER_PATTERN = 'http://{s}.tiles.mapbox.com/v3/mvhls.j254m1nf/{z}/{x}/{y}.png';
-var ArrayMap = [].map;
 
-function Tweet(content, username, latitude, longitude, id) {
-    this.id = id;
-    this.username = username;
-    this.content = content;
-    this.latitude = latitude;
-    this.longitude = longitude;
+function Tweet(twitterTweet){
+  this.username = twitterTweet.username
+  this.content = twitterTweet.content,
+  this.latitude = twitterTweet.latitude
+  this.longitude = twitterTweet.longitude,
+  this.twitter_id = twitterTweet.twitter_id,
+  this.location = twitterTweet.location,
+  this.stars = twitterTweet.stars
 }
-
-// var tweetArray = [];
 
 // $(document).ready(function () {
 
-    var map = L.map('map', {
-        center: [41.84, -87.65],
-        zoom: 5,
-        scrollWheelZoom: true
-        // zoomControl: false
-    });
+    function Tweet(tweet) {
+        this.id = tweet.id;
+        this.username = tweet.username;
+        this.content = tweet.content;
+        this.latitude = tweet.latitude;
+        this.longitude = tweet.longitude;
+        this.stars = tweet.stars;
+    }
 
-    L.tileLayer(MAP_IMAGE_LAYER_PATTERN, {
-        maxZoom: 18,
-    }).addTo(map);
+    // function buildMap() {
+        var map = L.map('map', {
+            center: [41.84, -87.65],
+            zoom: 5,
+            scrollWheelZoom: true
+            // zoomControl: false
+        });
 
-    // function cycleTweets(tweets) {
-    //     console.log('cycleTweets ' + tweets);
-    //     console.log('cycling them tweets...starting at #' + tweets.length);
-    //     for (key in tweets) {
-    //         createTweetObject(tweets[key], key);
-    //     }
+        L.tileLayer(MAP_IMAGE_LAYER_PATTERN, {
+            maxZoom: 18,
+            minZoom: 3
+        }).addTo(map);
     // }
 
-    function createTweetObject(tweet) {
-        aTweet = new Tweet(tweet.content, tweet.username, tweet.latitude , tweet.longitude, tweet.id);
-        display(aTweet);
+    // not tested
+    function processTweet(tweet) {
+        tweetObject = createTweetObject(tweet);
+        display(tweetObject);
+        // not tested
         // tweetArray.push(aTweet);
     }
 
+    // tested
+    function createTweetObject(tweet) {
+        aTweet = new Tweet(tweet);
+        return aTweet;
+    }
 
+    // not tested
     function display(tweet) {
         L.circleMarker([tweet.latitude, tweet.longitude], {
             radius: 7,

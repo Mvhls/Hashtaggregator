@@ -1,11 +1,13 @@
+
+
 $(document).ready(function () {
+
   var socket = window.socket;
 
-  console.log('loading main.js');
-
-  console.log(createTweetObject);
   socket.on('sendTweets', function(data) {
-    createTweetObject(data);
+    processTweet(data);
   });
 
 })
+
+// var app = angular.module('app', ['ngRoute', 'leaflet-directive']);
