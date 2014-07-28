@@ -23,13 +23,15 @@ module.exports = function(tweet, cb) {
     }
   }
   if (tweet.retweeted_status) {
-    var finderID = retweeted_status.id;
-    var retweets = retweeted_status.retweet_count;
-    var favorites = retweeted_status.favorite_count;
+    var finderID = tweet.retweeted_status.id.toString();
+    console.log(typeof(finderID))
+    var retweets = tweet.retweeted_status.retweet_count;
+    var favorites = tweet.retweeted_status.favorite_count;
     var stars = (retweets + favorites);
-    updateTweet(null, finderID, stars, function(err, data) {
+    updateTweet(finderID, stars, function(err, data) {
       if (err) return console.error(err);
-      console.log(data);
+      console.log("tweet number " + finderID + " updated with " + stars + " stars...");
+      console.log(data.rowCount === 1);
     })
   }
   cb(null, newTweetObject);

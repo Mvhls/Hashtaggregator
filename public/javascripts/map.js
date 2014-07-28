@@ -10,6 +10,31 @@ function Tweet(twitterTweet){
   this.stars = twitterTweet.stars
 }
 
+Tweet.prototype.doesContainText(text) {
+    var propertyName, property;
+    for (propertyName in this) {
+        if (this.hasOwnProperty(propertyName)) {
+            property = this[propertyName];
+            if (property.toString().indexOf(text) >= 0) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+// var TheApp = new App() ;
+
+// function App() {
+//     this.tweets = [];
+// }
+
+App.prototype.addTweet = function (tweetData) {
+    this.tweets.push(new Tweet(tweetData));
+    return this;
+}
+
+
 // $(document).ready(function () {
 
     function Tweet(tweet) {
@@ -36,17 +61,16 @@ function Tweet(twitterTweet){
     // }
 
     // not tested
-    function processTweet(tweet) {
-        tweetObject = createTweetObject(tweet);
-        display(tweetObject);
+    function processTweet(tweetData) {
+        tweet = new Tweet(tweetData);
+        display(tweet);
         // not tested
         // tweetArray.push(aTweet);
     }
 
     // tested
     function createTweetObject(tweet) {
-        aTweet = new Tweet(tweet);
-        return aTweet;
+        return new Tweet(tweet);
     }
 
     // not tested
