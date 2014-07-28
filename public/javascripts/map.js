@@ -1,4 +1,10 @@
 var MAP_IMAGE_LAYER_PATTERN = 'http://{s}.tiles.mapbox.com/v3/mvhls.j254m1nf/{z}/{x}/{y}.png';
+var circleRadius = 7;
+
+var darkGreen = '#486';
+var lightGreen = '#7b9';
+var darkOrange = '#f60';
+var lightOrange = '#fa6';
 
 function Tweet(twitterTweet){
   this.username = twitterTweet.username
@@ -10,7 +16,8 @@ function Tweet(twitterTweet){
   this.stars = twitterTweet.stars
 }
 
-Tweet.prototype.doesContainText(text) {
+// not tested
+Tweet.prototype.doesContainText = function (text) {
     var propertyName, property;
     for (propertyName in this) {
         if (this.hasOwnProperty(propertyName)) {
@@ -23,16 +30,17 @@ Tweet.prototype.doesContainText(text) {
     return false;
 }
 
-// var TheApp = new App() ;
-
-// function App() {
-//     this.tweets = [];
-// }
+function App() {
+    this.tweets = [];
+}
 
 App.prototype.addTweet = function (tweetData) {
     this.tweets.push(new Tweet(tweetData));
     return this;
 }
+
+
+app = new App();
 
 
 // $(document).ready(function () {
@@ -64,24 +72,30 @@ App.prototype.addTweet = function (tweetData) {
     function processTweet(tweetData) {
         tweet = new Tweet(tweetData);
         display(tweet);
+        return tweet;
         // not tested
         // tweetArray.push(aTweet);
     }
 
     // tested
-    function createTweetObject(tweet) {
-        return new Tweet(tweet);
-    }
+    // function createTweetObject(tweet) {
+    //     return new Tweet(tweet);
+    // }
 
     // not tested
     function display(tweet) {
         L.circleMarker([tweet.latitude, tweet.longitude], {
-            radius: 7,
-            color: '#486',
-            fillColor: '#7b9',
-            fillOpacity: 0.75
+            radius: circleRadius,
+            color: (tweet.stars > 2000 ? darkOrange : darkGreen),
+            fillColor: (tweet.stars > 2000 ? lightOrange : lightGreen),
+            fillOpacity: 0.5
         }).addTo(map)
-            .bindPopup("<a href='https://twitter.com/" + tweet.username + "'>@" + tweet.username + "</a>" + " said: " + tweet.content);
+            .bindPopup(formatTweet(tweet));
+    }
+
+    // tested
+    function formatTweet(tweet) {
+        return "<a href='https://twitter.com/" + tweet.username + "'>@" + tweet.username + "</a> said: <p class='tweet-popup'>" + tweet.content + "</p><h4>Favorites and Retweets: " + tweet.stars + "</h4>";
     }
 
 // });

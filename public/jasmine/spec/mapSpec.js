@@ -15,11 +15,19 @@ describe ("map.js", function() {
     };
   });
 
-  describe ('function createTweetObject(tweet)', function() {
-    it('returns a Tweet', function() {
-      expect(createTweetObject(tweetishObject) instanceof Tweet).toBe(true);
-    });
-  });
+  describe ('function formatTweet(tweet)', function() {
+    it ('returns a formatted popup', function() {
+      expect(formatTweet(tweetishObject)).toEqual("<a href='https://twitter.com/bob'>@bob</a> said: <p class='tweet-popup'>tweet tweet said the bobolink</p><h4>Favorites and Retweets: 1</h4>");
+    })
+  })
+
+  // describe ('function processTweet(tweet)', function() {
+  //   it('returns a Tweet', function() {
+  //     expect(processTweet(tweetishObject) instanceof Tweet).toBe(true);
+  //   });
+  // });
+
+
 
   // describe ('function display(tweet)', function() {
   //   it ('creates a circleMarker', function() {
@@ -37,7 +45,7 @@ describe ("map.js", function() {
   //         maxZoom: 18,
   //     }).addTo(map);
 
-  //     var tweet = createTweetObject(tweetishObject);
+  //     var tweet = processTweet(tweetishObject);
   //     console.log(tweet)
   //     console.log(L.circleMarker)
   //     spyOn(L, 'circleMarker');
