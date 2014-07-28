@@ -5,7 +5,7 @@ describe("Tweet", function() {
     tweet = new Tweet({
       id: 1,
       username: "bob",
-      content: "tweet tweet",
+      content: "tweet tweet said the bobolink",
       longitude: 72.45,
       latitude: 54.34,
       twitter_id: "9048750982374098234",

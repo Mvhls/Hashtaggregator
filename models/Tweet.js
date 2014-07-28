@@ -1,11 +1,11 @@
 function Tweet(twitterTweet){
-  this.username = twitterTweet.
-  this.content = twitterTweet.text,
-  this.latitude = twitterTweet.coordinates[0],
-  this.longitude = twitterTweet.coordinates[1],
-  this.twitter_id = twitterTweet.id_str,
-  this.location = twitterTweet.user.location,
-  this.stars = twitterTweet.favorite_count
+  this.username = twitterTweet.username
+  this.content = twitterTweet.content,
+  this.latitude = twitterTweet.latitude
+  this.longitude = twitterTweet.longitude,
+  this.twitter_id = twitterTweet.twitter_id,
+  this.location = twitterTweet.location,
+  this.stars = twitterTweet.stars
 }
 
 module.exports = Tweet;
