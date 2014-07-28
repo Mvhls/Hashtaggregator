@@ -1,3 +1,5 @@
+// return an Integer equal to id of last tweet in db
+
 var dbQuery = require('./query');
 var sql = require('sql');
 var lastTweet;
