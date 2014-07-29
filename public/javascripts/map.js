@@ -56,13 +56,13 @@ var lightOrange = '#fa6';
     var map = L.map('map', {
         center: [41.84, -87.65],
         zoom: 5,
-        scrollWheelZoom: true
-        // maxBounds: [180, 80, -180, -80],
+        scrollWheelZoom: true,
+        worldCopyJump: true
     });
 
     L.tileLayer(MAP_IMAGE_LAYER_PATTERN, {
-        maxZoom: 18//,
-        // minZoom: 3
+        maxZoom: 18,
+        minZoom: 3,
     }).addTo(map);
 
     // not tested
