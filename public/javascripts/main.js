@@ -1,4 +1,5 @@
 var app = angular.module( "hashtag", [] );
+var lastTweetID;
 
 app.controller(
     "mapController",
@@ -18,9 +19,21 @@ $(document).ready(function () {
   socket.emit('ready');
 
   socket.on('sendTweets', function(data) {
-    console.log("streaming tweet #" + counter + "...")
+    // console.log("streaming tweet #" + counter + "...")
     processTweet(data);
     counter++;
   });
+
+  socket.on('lastTweet', function(id) {
+    var lastTweetID = id;
+    console.log('LAST TWEET: ' + lastTweetID)
+  })
+
+  setInterval(askForNewTweets, 2000);
+
+  // get moar tweets!
+  function askForNewTweets() {
+    socket.emit('moarTweets', lastTweetID);
+  }
 
 })
