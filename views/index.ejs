@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="hashtag">
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
@@ -9,22 +9,23 @@
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
 
-    <!-- <form role="form">
-      <input ng-model="search.content">
-      <input ng-model="search.username">
-    </form> -->
+    <section id='searchable' class='searchable'>
+      <h1>{{title}}</h1>
+      Search: <input ng-model="search">
+      <ul>
+          <li ng-repeat="tweet in tweets | filter:search" ng-show="search">
+              <a href="{{tweet.longitude}}, {{tweet.latitude}}">{{tweet.content}} : {{tweet.username}}</a>
+          </li>
+      </ul>
+    </section>
 
-    <!-- <div ng-controller='mapBoxController'>
-      <leaflet center="world" events="events" legend="legend" width='100%' height='400' layers='layers' geojson="geojson">
-      </leaflet>
-    </div> -->
 
     <div id="map"></div>
 
 
 <!-- load javascripts at end of document for faster page load -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <!-- // <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script> -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
     <script type = "text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
     <script type = "text/javascript" src="/javascripts/map.js"></script>
     <script src="/socket.io/socket.io.js"></script>

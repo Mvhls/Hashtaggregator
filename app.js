@@ -11,6 +11,7 @@ var routes = require('./routes/index');
 var getAllTweetsFromDB = require('./tasks/getAllTweetsFromDB');
 var getNewTweets = require('./tasks/getNewTweets');
 var getLastTweetID = require('./tasks/getLastTweetID');
+var initialTweets;
 
 var app = new express()
 ,   http = require('http')
@@ -37,13 +38,19 @@ io.sockets.on('connection', function(client) {
     var lastTweetID = 0;
     console.log('client connected...');
 
-    // on connection, serve all the tweets from the db
+    // on connection, get all tweets from db
     getAllTweetsFromDB(null, function(err, results) {
         if(err) return console.error(err);
+        initialTweets = results;
+    })
+
+    // on 'ready', serve all the tweets from the db
+    io.sockets.on('ready', function(client) {
         // send tweets to view
-        results.forEach(function(tweet) {
+        initialTweets.forEach(function(tweet) {
             client.emit('sendTweets', tweet);
         })
+
         // save id of last tweet sent to client on connection
         getLastTweetID(function(err, id) {
             if (err) return console.error(err);

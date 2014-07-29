@@ -4,6 +4,7 @@ var darkGreen = '#486';
 var lightGreen = '#7b9';
 var darkOrange = '#f60';
 var lightOrange = '#fa6';
+window.searchArray = [];
 
 // function Tweet(twitterTweet){
 //   this.username = twitterTweet.username
@@ -69,7 +70,8 @@ var lightOrange = '#fa6';
     function processTweet(tweetData) {
         tweet = new Tweet(tweetData);
         display(tweet);
-        // return tweet;
+        window.searchArray.push(tweet);
+        return tweet;
     }
 
     // not tested
@@ -87,5 +89,17 @@ var lightOrange = '#fa6';
     function formatTweet(tweet) {
         return "<a href='https://twitter.com/" + tweet.username + "'>@" + tweet.username + "</a> said: <p class='tweet-popup'>" + tweet.content + "</p><h4>Favorites and Retweets: " + tweet.stars + "</h4>";
     }
+
+    // not tested
+    $(".searchable").on("click", "a", function(event) {
+        event.preventDefault()
+        var params = [];
+        var paramsFloat = []
+        params = event.target.attributes[0].value.split(',')
+        $.each(params, function( index, value) {
+            paramsFloat.push(parseFloat(value))
+        })
+        map.setView(new L.LatLng(params[1], params[0]), zoom = 12, animate = true)
+    })
 
 // });
