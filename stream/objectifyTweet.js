@@ -1,27 +1,6 @@
 updateTweet = require('./updateTweet')
 
 module.exports = function(tweet, cb) {
-  if (tweet.coordinates) {
-    console.log(tweet);
-
-    newTweetObject = {
-      username: tweet.user.screen_name,
-      content: tweet.text,
-      longitude: tweet.coordinates.coordinates[0],
-      latitude: tweet.coordinates.coordinates[1],
-      twitter_id: tweet.id_str,
-      location: tweet.user.location,
-      stars: tweet.favorite_count
-    }
-  } else {
-    newTweetObject = {
-      username: tweet.user.screen_name,
-      content: tweet.text,
-      twitter_id: tweet.id_str,
-      location: tweet.user.location,
-      stars: tweet.favorite_count
-    }
-  }
   if (tweet.retweeted_status) {
     var finderID = tweet.retweeted_status.id.toString();
     console.log(typeof(finderID))
@@ -34,6 +13,19 @@ module.exports = function(tweet, cb) {
       console.log(data.rowCount === 1);
     })
   }
+  if (tweet.coordinates) {
+    console.log(tweet);
+
+    newTweetObject = {
+      username: tweet.user.screen_name,
+      content: tweet.text,
+      longitude: tweet.coordinates.coordinates[0],
+      latitude: tweet.coordinates.coordinates[1],
+      twitter_id: tweet.id_str,
+      location: tweet.user.location,
+      stars: tweet.favorite_count
+    }
+  } else { cb("no geotags") };
   cb(null, newTweetObject);
 }
 
