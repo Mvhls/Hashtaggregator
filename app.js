@@ -9,9 +9,11 @@ var routes = require('./routes/index');
 // var events = require('events');
 // var eventEmitter = new events.EventEmitter().listen(3001);
 // Custom Query Functions
+var streamTweetsToClient = require('./tasks/streamTweetsToClient');
 var getAllTweetsFromDB = require('./tasks/getAllTweetsFromDB');
 var getNewTweets = require('./tasks/getNewTweets');
 var getLastTweetID = require('./tasks/getLastTweetID');
+// constants and vars
 var TWEET_SENDING_DELAY = 5;
 var initialTweets;
 
@@ -55,24 +57,7 @@ io.sockets.on('connection', function(client) {
     client.on('ready', function() {
         console.log('client ready...')
 
-        function streamTweetsTo(Tweets, Client) {
-            (function streamRemainingTweets() {
-                // var tweet = Tweets.pop();
-                // console.log(tweet)
-                if (Tweets.length) {
-                    Client.emit('sendTweets', Tweets.pop());
-                    setTimeout(streamRemainingTweets, TWEET_SENDING_DELAY);
-                }
-            })();
-        }
-
-        streamTweetsTo(initialTweets, client);
-
-        // initialTweets.forEach(function(tweet) {
-        //     // console.log('send tweet #' + tweet.id);
-        //     client.emit('sendTweets', tweet);
-        //     setTimeout(console.log('...done.'), 1000);
-        // })
+        streamTweetsToClient(initialTweets, client, TWEET_SENDING_DELAY);
 
         // process.emit('initialized', 'tweets');
 

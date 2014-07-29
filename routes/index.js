@@ -15,6 +15,7 @@ router.get('/', function(req, res) {
 router.post('/hashtag', function (req, res) {
   killStream();
   runStream(hashtag);
+  // figure out what response to send here...back to the client
 })
 
 module.exports = router;
