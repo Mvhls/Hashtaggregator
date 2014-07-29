@@ -1,14 +1,13 @@
-var app = angular.module( "hashtag", [] );
+var app = angular.module("hashtag", []);
 var lastTweetID;
 
 app.controller(
     "mapController",
     function( $scope, $interval ) {
 
-        $interval(function(){
-          $scope.tweets = window.searchArray}, 5000);
-
-
+      $interval(function(){
+        $scope.tweets = window.searchArray
+      }, 5000);
     }
 );
 
@@ -37,19 +36,10 @@ $(document).ready(function () {
   }
 
 
-  $('.newHash').submit(function(event) {
+  $('#change-hashtag-form').submit(function(event) {
     event.preventDefault();
     var hashtag = event.target[0].value
     console.log(hashtag)
     socket.emit('newStream', hashtag);
-    // $.ajax({
-    //   type: "POST",
-    //   url: "/hashtag",
-    //   data: {'params': hashtag},
-    //   dataType: "html",
-    //   success: function(data) {
-    //     console.log(data)
-    //   }
-    // })
   })
 })

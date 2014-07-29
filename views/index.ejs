@@ -10,16 +10,17 @@
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
 
-    <form class="newHash">
-      #Hashtag?git ad
-      <input type='text' name='hashtag'><input type='submit'>
+    <form id="change-hashtag-form">
+      #Hashtag?
+      <input type='text' name='hashtag' class='form-box'>
+      <input type='submit'>
     </form>
 
-    <section id='searchable' class='searchable'>
+    <section id='search-tweets'>
       <h1>{{title}}</h1>
-      Search: <input ng-model="search">
+      Search: <input class='form-box' ng-model="search">
       <ul>
-          <li ng-repeat="tweet in tweets | filter:search" ng-show="search">
+          <li class="tweet" ng-repeat="tweet in tweets | filter:search" ng-show="search">
               <a href="{{tweet.longitude}}, {{tweet.latitude}}">{{tweet.content}} : {{tweet.username}}</a>
           </li>
       </ul>

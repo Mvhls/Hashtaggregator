@@ -69,7 +69,6 @@ io.sockets.on('connection', function(client) {
 
     // periodically check db for new tweets
     client.on('moarTweets', function(id) {
-        console.log('getting moar tweets!');
         getNewTweets(null, lastTweetID, function(err, newTweets) {
             if(err) return console.error(err);
             // send tweets to view
