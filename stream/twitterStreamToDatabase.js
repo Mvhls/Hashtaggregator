@@ -2,10 +2,10 @@
 var twitterStream = require('./twitterStream');
 var createTweet = require('./createTweet');
 var objectifyTweet = require('./objectifyTweet');
-var stream = twitterStream();
 
-module.exports = function(err, cb) {
-  if (err) return cb(err);
+module.exports = function(hashtag) {
+  var stream = twitterStream(hashtag);
+  // if (err) return cb(err);
   stream.on('tweet', function(tweet) {
     objectifyTweet(tweet, function(err, tweetObject) {
       if (err) return console.error(err);
