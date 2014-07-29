@@ -45,7 +45,7 @@ var lightOrange = '#fa6';
 // $(document).ready(function () {
 
     function Tweet(tweet) {
-        // this.id = tweet.id;
+        this.id = tweet.id;
         this.username = tweet.username;
         this.content = tweet.content;
         this.latitude = tweet.latitude;
@@ -53,25 +53,23 @@ var lightOrange = '#fa6';
         this.stars = tweet.stars;
     }
 
-    // function buildMap() {
-        var map = L.map('map', {
-            center: [41.84, -87.65],
-            zoom: 5,
-            scrollWheelZoom: true
-            // maxBounds: [180, 80, -180, -80],
-        });
+    var map = L.map('map', {
+        center: [41.84, -87.65],
+        zoom: 5,
+        scrollWheelZoom: true
+        // maxBounds: [180, 80, -180, -80],
+    });
 
-        L.tileLayer(MAP_IMAGE_LAYER_PATTERN, {
-            maxZoom: 18,
-            minZoom: 3
-        }).addTo(map);
-    // }
+    L.tileLayer(MAP_IMAGE_LAYER_PATTERN, {
+        maxZoom: 18//,
+        // minZoom: 3
+    }).addTo(map);
 
     // not tested
     function processTweet(tweetData) {
         tweet = new Tweet(tweetData);
         display(tweet);
-        return tweet;
+        // return tweet;
     }
 
     // not tested

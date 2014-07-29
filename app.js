@@ -58,6 +58,7 @@ io.sockets.on('connection', function(client) {
             if(err) return console.error(err);
             // send tweets to view
             newTweets.forEach(function(tweet) {
+                console.log("sending tweet #" + tweet.id + "...")
                 client.emit('sendTweets', tweet);
             })
             // update lastTweetID
