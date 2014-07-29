@@ -19,14 +19,14 @@ $(document).ready(function () {
   socket.emit('ready');
 
   socket.on('sendTweets', function(data) {
-    // console.log("streaming tweet #" + counter + "...")
     processTweet(data);
+    // console.log("streaming tweet #" + counter + "...")
     counter++;
   });
 
   socket.on('lastTweet', function(id) {
     var lastTweetID = id;
-    console.log('LAST TWEET: ' + lastTweetID)
+    // console.log('LAST TWEET: ' + lastTweetID)
   })
 
   setInterval(askForNewTweets, 2000);
