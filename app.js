@@ -12,7 +12,12 @@ var routes = require('./routes/index');
 var getAllTweetsFromDB = require('./tasks/getAllTweetsFromDB');
 var getNewTweets = require('./tasks/getNewTweets');
 var getLastTweetID = require('./tasks/getLastTweetID');
+var TWEET_SENDING_DELAY = 5;
 var initialTweets;
+
+// run stream
+var stream = require('./runStream');
+
 
 var app = new express()
 ,   http = require('http')
@@ -42,17 +47,34 @@ io.sockets.on('connection', function(client) {
     // on connection, get all tweets from db
     getAllTweetsFromDB(null, function(err, results) {
         if(err) return console.error(err);
+        console.log('getting all tweets from db...')
         initialTweets = results;
     })
 
     // on 'ready', serve all the tweets from the db
-    io.sockets.on('ready', function(client) {
-        // send tweets to view
-        initialTweets.forEach(function(tweet) {
-            client.emit('sendTweets', tweet);
-        })
+    client.on('ready', function() {
+        console.log('client ready...')
 
-        process.emit('initialized', 'tweets');
+        function streamTweetsTo(Tweets, Client) {
+            (function streamRemainingTweets() {
+                // var tweet = Tweets.pop();
+                // console.log(tweet)
+                if (Tweets.length) {
+                    Client.emit('sendTweets', Tweets.pop());
+                    setTimeout(streamRemainingTweets, TWEET_SENDING_DELAY);
+                }
+            })();
+        }
+
+        streamTweetsTo(initialTweets, client);
+
+        // initialTweets.forEach(function(tweet) {
+        //     // console.log('send tweet #' + tweet.id);
+        //     client.emit('sendTweets', tweet);
+        //     setTimeout(console.log('...done.'), 1000);
+        // })
+
+        // process.emit('initialized', 'tweets');
 
         // save id of last tweet sent to client on connection
         getLastTweetID(function(err, id) {
@@ -63,11 +85,11 @@ io.sockets.on('connection', function(client) {
 
     // periodically check db for new tweets
 
-    console.log('here');
-    process.on('initialized', function(tweets) {
-        console.log(tweets);
-        setInterval(sendNewTweets, 200);
-    })
+    // console.log('here');
+    // process.on('initialized', function(tweets) {
+    //     console.log(tweets);
+    //     setInterval(sendNewTweets, 200);
+    // })
 
     function sendNewTweets() {
         console.log('about to get new tweets...')

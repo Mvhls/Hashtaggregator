@@ -15,7 +15,7 @@ $(document).ready(function () {
   var counter = 0;
   var socket = window.socket;
 
-  socket.emit('ready', 'client ready');
+  socket.emit('ready');
 
   socket.on('sendTweets', function(data) {
     console.log("streaming tweet #" + counter + "...")

@@ -1,6 +1,7 @@
 updateTweet = require('./updateTweet')
 
 module.exports = function(tweet, cb) {
+  var newTweetObject = {};
   if (tweet.retweeted_status) {
     var finderID = tweet.retweeted_status.id.toString();
     console.log(typeof(finderID))
@@ -26,7 +27,7 @@ module.exports = function(tweet, cb) {
       stars: tweet.favorite_count
     }
     console.log(newTweetObject);
-  } else { cb("no geotags") };
+  }
   cb(null, newTweetObject);
 }
 

@@ -9,9 +9,11 @@ module.exports = function(err, cb) {
   stream.on('tweet', function(tweet) {
     objectifyTweet(tweet, function(err, tweetObject) {
       if (err) return console.error(err);
-      createTweet(tweetObject, function(err, data) {
-        console.log(data);
-      })
+      if (tweetObject.username) {
+        createTweet(tweetObject, function(err, data) {
+          console.log(data);
+        })
+      }
     })
   });
 };
