@@ -25,6 +25,7 @@ module.exports = function(tweet, cb) {
       location: tweet.user.location,
       stars: tweet.favorite_count
     }
+    console.log(newTweetObject);
   } else { cb("no geotags") };
   cb(null, newTweetObject);
 }
