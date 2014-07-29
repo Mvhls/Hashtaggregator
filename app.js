@@ -16,7 +16,7 @@ var TWEET_SENDING_DELAY = 5;
 var initialTweets;
 
 // run stream
-var stream = require('./runStream');
+var stream = require('./stream/twitterStreamToDatabase')();
 
 
 var app = new express()

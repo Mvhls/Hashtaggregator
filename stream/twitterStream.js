@@ -10,10 +10,11 @@ var T = new Twit({
   access_token_secret: process.env.access_token_secret
 });
 
-module.exports = function(err, cb) {
-  if(err) return cb(err)
+module.exports = function(hashtag, cb) {
+  hashtag = (typeof hashtag !== 'undefined' ? hashtag : require('./hashtag'));
+  console.log('firing up the Tweet Stream...tracking ' + hashtag);
   var stream = T.stream('statuses/filter', {
-    track: require('./hashtag')
+    track: hashtag
   });
   return stream;
 };
