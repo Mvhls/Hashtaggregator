@@ -12,7 +12,7 @@ var routes = require('./routes/index');
 var streamTweetsToClient = require('./tasks/streamTweetsToClient');
 var getAllTweetsFromDB = require('./tasks/getAllTweetsFromDB');
 var getNewTweets = require('./tasks/getNewTweets');
-var getLastTweetID = require('./tasks/getLastTweetID');
+var setLastTweetID = require('./tasks/setLastTweetID');
 // constants and vars
 var TWEET_SENDING_DELAY = 5;
 var initialTweets;
@@ -59,13 +59,11 @@ io.sockets.on('connection', function(client) {
 
         streamTweetsToClient(initialTweets, client, TWEET_SENDING_DELAY);
 
-        // process.emit('initialized', 'tweets');
+        process.emit('initialized', 'tweets');
 
         // save id of last tweet sent to client on connection
-        getLastTweetID(function(err, id) {
-            if (err) return console.error(err);
-            lastTweetID = id;
-        });
+        setLastTweetID(lastTweetID);
+
     })
 
     // periodically check db for new tweets
@@ -87,10 +85,7 @@ io.sockets.on('connection', function(client) {
             })
             // update lastTweetID
             console.log('setting lastTweetID...' + lastTweetID)
-            getLastTweetID(function(err, id) {
-                if (err) return console.error(err);
-                lastTweetID = id;
-            });
+            setLastTweetID(lastTweetID);
         })
     }
 
