@@ -21,7 +21,7 @@ module.exports = function(tweet, cb) {
       latitude: tweet.coordinates.coordinates[1],
       twitter_id: tweet.id_str,
       location: tweet.user.location,
-      stars: tweet.favorite_count
+      stars: tweet.favorite_count || 0
     }
     console.log(newTweetObject);
   }
@@ -85,7 +85,7 @@ if(process.argv[1] === __filename) {
        follow_request_sent: null,
        notifications: null },
     geo: null,
-    coordinates: null,
+    coordinates: { coordinates: [1, 1] },
     place: null,
     contributors: null,
     retweet_count: 0,
