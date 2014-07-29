@@ -4,9 +4,10 @@ var port = process.env.PORT || 3888;
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-// Database Requires
 var pg = require('pg');
 var routes = require('./routes/index');
+// var events = require('events');
+// var eventEmitter = new events.EventEmitter().listen(3001);
 // Custom Query Functions
 var getAllTweetsFromDB = require('./tasks/getAllTweetsFromDB');
 var getNewTweets = require('./tasks/getNewTweets');
@@ -51,6 +52,8 @@ io.sockets.on('connection', function(client) {
             client.emit('sendTweets', tweet);
         })
 
+        process.emit('initialized', 'tweets');
+
         // save id of last tweet sent to client on connection
         getLastTweetID(function(err, id) {
             if (err) return console.error(err);
@@ -59,6 +62,13 @@ io.sockets.on('connection', function(client) {
     })
 
     // periodically check db for new tweets
+
+    console.log('here');
+    process.on('initialized', function(tweets) {
+        console.log(tweets);
+        setInterval(sendNewTweets, 200);
+    })
+
     function sendNewTweets() {
         console.log('about to get new tweets...')
         getNewTweets(null, lastTweetID, function(err, newTweets) {
@@ -76,8 +86,6 @@ io.sockets.on('connection', function(client) {
             });
         })
     }
-
-    setInterval(sendNewTweets, 10000);
 
 })
         // =========================================
