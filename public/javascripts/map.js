@@ -16,8 +16,8 @@ function Tweet(tweet) {
 }
 
 var map = L.map('map', {
-    center: [41.84, -87.65],
-    zoom: 5,
+    center: [40.7127, -74.0059],
+    zoom: 4,
     scrollWheelZoom: true,
     worldCopyJump: true
 });
@@ -60,5 +60,5 @@ $("#search-tweets").on("click", "a", function(event) {
     $.each(params, function( index, value) {
         paramsFloat.push(parseFloat(value))
     })
-    map.setView(new L.LatLng(params[1], params[0]), zoom = 12, animate = true)
+    map.setView(new L.LatLng(params[1], params[0]), zoom = 18, animate = true)
 })
