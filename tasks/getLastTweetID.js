@@ -7,12 +7,12 @@ var lastTweet;
 module.exports = function(cb) {
 
   var sql = {
-    text: 'SELECT COUNT(*) FROM "tweets"'
+    text: 'SELECT MAX("id") FROM "tweets"'
   };
 
   lastTweet = dbQuery(sql, function(err, data){
     if(err) return console.error(err);
-    cb(null, data.rows[0].count);
+    cb(null, data.rows[0].max);
   });
 }
 
