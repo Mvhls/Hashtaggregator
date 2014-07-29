@@ -16,5 +16,6 @@ module.exports = function(hashtag, cb) {
   var stream = T.stream('statuses/filter', {
     track: hashtag
   });
+
   cb(null, stream);
 };

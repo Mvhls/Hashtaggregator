@@ -78,11 +78,9 @@ io.sockets.on('connection', function(client) {
                 client.emit('sendTweets', tweet);
             })
             // update lastTweetID
-            console.log('setting lastTweetID...' + lastTweetID)
             getLastTweetID(function(err, id) {
                 if (err) return console.error(err);
                 lastTweetID = id;
-                console.log('last tweet id set to ' + lastTweetID);
                 client.emit('lastTweet', lastTweetID);
             })
         })
@@ -95,10 +93,6 @@ io.sockets.on('connection', function(client) {
         } else {
             stream = require('./stream/twitterStreamToDatabase')('#' + hashtag);
         }
-    })
-
-    messenger.on('destroy', function() {
-        console.log('don\'t shoot!');
     })
 })
 
