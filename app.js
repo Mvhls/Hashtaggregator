@@ -6,8 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var pg = require('pg');
 var routes = require('./routes/index');
-// var events = require('events');
-// var eventEmitter = new events.EventEmitter().listen(3001);
+var messenger = require('./messenger');
 // Custom Query Functions
 var streamTweetsToClient = require('./tasks/streamTweetsToClient');
 var getAllTweetsFromDB = require('./tasks/getAllTweetsFromDB');
@@ -87,6 +86,19 @@ io.sockets.on('connection', function(client) {
                 client.emit('lastTweet', lastTweetID);
             })
         })
+    })
+
+    client.on('newStream', function(hashtag) {
+        messenger.emit('destroy');
+        if (hashtag[0] === '#') {
+            stream = require('./stream/twitterStreamToDatabase')(hashtag);
+        } else {
+            stream = require('./stream/twitterStreamToDatabase')('#' + hashtag);
+        }
+    })
+
+    messenger.on('destroy', function() {
+        console.log('don\'t shoot!');
     })
 })
 

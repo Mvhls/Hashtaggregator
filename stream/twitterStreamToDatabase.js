@@ -2,10 +2,11 @@
 var twitterStream = require('./twitterStream');
 var createTweet = require('./createTweet');
 var objectifyTweet = require('./objectifyTweet');
+var messenger = require('../messenger')
 
 module.exports = function(hashtag) {
   var stream = twitterStream(hashtag);
-  // if (err) return cb(err);
+
   stream.on('tweet', function(tweet) {
     objectifyTweet(tweet, function(err, tweetObject) {
       if (err) return console.error(err);
@@ -16,4 +17,8 @@ module.exports = function(hashtag) {
       }
     })
   });
+
+  messenger.on('destroy', function() {
+    stream.destroy();
+  })
 };

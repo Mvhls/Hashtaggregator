@@ -1,7 +1,5 @@
 module.exports = function streamTweetsToClient(Tweets, Client, Delay) {
     (function streamRemainingTweets() {
-        // var tweet = Tweets.pop();
-        // console.log(tweet)
         if (Tweets.length) {
             Client.emit('sendTweets', Tweets.pop());
             setTimeout(streamRemainingTweets, Delay);

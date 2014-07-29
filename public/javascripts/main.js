@@ -36,4 +36,20 @@ $(document).ready(function () {
     socket.emit('moarTweets', lastTweetID);
   }
 
+
+  $('.newHash').submit(function(event) {
+    event.preventDefault();
+    var hashtag = event.target[0].value
+    console.log(hashtag)
+    socket.emit('newStream', hashtag);
+    // $.ajax({
+    //   type: "POST",
+    //   url: "/hashtag",
+    //   data: {'params': hashtag},
+    //   dataType: "html",
+    //   success: function(data) {
+    //     console.log(data)
+    //   }
+    // })
+  })
 })

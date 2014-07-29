@@ -106,19 +106,5 @@ window.searchArray = [];
     //     console.log(response)
     // }
 
-    $('.newHash').submit(function(event) {
-        var hashtag = event.target[0].value
-        console.log(hashtag)
-        $.ajax({
-            type: "POST",
-            url: "/hashtag",
-            data: {'params': hashtag},
-            dataType: "html",
-            success: function(data) {
-                console.log(data)
-            }
-        })
-        console.log("ajax done")
-    })
 
 // });
