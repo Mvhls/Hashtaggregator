@@ -37,9 +37,10 @@ $(document).ready(function () {
 
 
   $('#change-hashtag-form').submit(function(event) {
-    event.preventDefault();
+    // event.preventDefault();
     var hashtag = event.target[0].value
     console.log(hashtag)
     socket.emit('newStream', hashtag);
+    })
   })
 })
