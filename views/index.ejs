@@ -18,9 +18,6 @@
           <li class="tweet" ng-repeat="tweet in tweets | filter:search | orderBy:'stars':!reverse | limitTo:10" ng-show="search">
               <a href="{{tweet.longitude}}, {{tweet.latitude}}">{{tweet.content}} : {{tweet.username}} : Favorites: {{tweet.stars}}</a>
           </li>
-          <!-- <li class="tweet" ng-repeat="tweet in tweets | filter:search" ng-show="search">
-              <a href="{{tweet.longitude}}, {{tweet.latitude}}">{{tweet.content}} : {{tweet.username}}</a>
-          </li> -->
       </ul>
     </section>
 

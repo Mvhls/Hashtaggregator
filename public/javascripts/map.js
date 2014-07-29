@@ -16,7 +16,7 @@ function Tweet(tweet) {
     this.stars = tweet.stars;
 }
 
-var map = L.map('map', {
+window.map = L.map('map', {
     center: [40.7127, -74.0059],
     zoom: 4,
     scrollWheelZoom: true,

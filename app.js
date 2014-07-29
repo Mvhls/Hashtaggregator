@@ -15,6 +15,7 @@ var getLastTweetID = require('./tasks/getLastTweetID');
 // constants and vars
 var TWEET_SENDING_DELAY = 5;
 var initialTweets;
+var hashtag;
 
 // run stream
 var stream = require('./stream/twitterStreamToDatabase')();
@@ -45,7 +46,7 @@ io.sockets.on('connection', function(client) {
     console.log('client connected...');
 
     // on connection, get all tweets from db
-    getAllTweetsFromDB(null, function(err, results) {
+    getAllTweetsFromDB(null, hashtag, function(err, results) {
         if(err) return console.error(err);
         console.log('getting all tweets from db...')
         initialTweets = results;
@@ -84,8 +85,10 @@ io.sockets.on('connection', function(client) {
         })
     })
 
-    client.on('newStream', function(hashtag) {
+    client.on('newStream', function(newHashtag) {
+        // socket.emit('changeColor');
         messenger.emit('destroy');
+        hashtag = newHashtag
         if (hashtag[0] === '#') {
             stream = require('./stream/twitterStreamToDatabase')(hashtag);
         } else {
