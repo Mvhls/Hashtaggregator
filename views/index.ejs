@@ -2,6 +2,7 @@
 <html ng-app="hashtag">
   <head>
     <title><%= title %></title>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,900|Raleway:400,700|Josefin+Slab:400,700' rel='stylesheet' type='text/css'>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
   </head>
@@ -10,19 +11,16 @@
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
 
-    <form id="change-hashtag-form">
-      #Hashtag?
-      <input type='text' name='hashtag' class='form-box'>
-      <input type='submit'>
-    </form>
-
     <section id='search-tweets'>
       <h1>{{title}}</h1>
       Search: <input class='form-box' ng-model="search">
       <ul>
-          <li class="tweet" ng-repeat="tweet in tweets | filter:search" ng-show="search">
-              <a href="{{tweet.longitude}}, {{tweet.latitude}}">{{tweet.content}} : {{tweet.username}}</a>
+          <li class="tweet" ng-repeat="tweet in tweets | filter:search | orderBy:'stars':!reverse | limitTo:10" ng-show="search">
+              <a href="{{tweet.longitude}}, {{tweet.latitude}}">{{tweet.content}} : {{tweet.username}} : Favorites: {{tweet.stars}}</a>
           </li>
+          <!-- <li class="tweet" ng-repeat="tweet in tweets | filter:search" ng-show="search">
+              <a href="{{tweet.longitude}}, {{tweet.latitude}}">{{tweet.content}} : {{tweet.username}}</a>
+          </li> -->
       </ul>
     </section>
 

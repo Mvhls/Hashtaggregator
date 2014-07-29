@@ -19,7 +19,6 @@ var initialTweets;
 // run stream
 var stream = require('./stream/twitterStreamToDatabase')();
 
-
 var app = new express()
 ,   http = require('http')
 ,   server = http.createServer(app)

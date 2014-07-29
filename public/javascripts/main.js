@@ -41,6 +41,5 @@ $(document).ready(function () {
     var hashtag = event.target[0].value
     console.log(hashtag)
     socket.emit('newStream', hashtag);
-    })
   })
 })
