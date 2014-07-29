@@ -13,12 +13,12 @@ router.get('/', function(req, res) {
   });
 });
 
-router.post('/hashtag', function (req, res) {
-  var hashtag = req.body.params
-  // killStream();
-  runStream(hashtag);
-  // figure out what response to send here...back to the client
-  return hashtag
-})
+// router.post('/hashtag', function (req, res) {
+//   var hashtag = req.body.params
+//   // killStream();
+//   runStream(hashtag);
+//   // figure out what response to send here...back to the client
+//   return hashtag
+// })
 
 module.exports = router;
