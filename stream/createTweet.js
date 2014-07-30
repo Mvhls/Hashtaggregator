@@ -15,7 +15,7 @@ module.exports = function(tweet, cb) {
 
     if(err) return cb(err)
 
-    cb(null, "tweet created");
+    cb(null, result);
 
   });
 }
@@ -36,5 +36,6 @@ if(process.argv[1] === __filename) {
   module.exports(tweetObjectToSave, function(err, data) {
       if(err) return console.error(err);
       console.log(data);
+      process.reallyExit();
   })
 }

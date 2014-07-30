@@ -54,9 +54,10 @@ io.sockets.on('connection', function(client) {
     getAllTweetsFromDB(null, function(err, results) {
         if(err) return console.error(err);
         console.log('getting all tweets from db...')
-        filterByHashtag(hashtag, results, function(err, filteredResults) {
-            initialTweets = filteredResults;
-        })
+        initialTweets = results;
+        // filterByHashtag(hashtag, results, function(err, filteredResults) {
+            // initialTweets = filteredResults;
+        // })
     })
 
     getLastTweetID(function(err, id) {
