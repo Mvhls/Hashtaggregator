@@ -42,7 +42,7 @@ $(document).ready(function () {
     socket.emit('moarTweets', lastTweetID);
   }
 
-
+  // change hashtag stream
   $('#change-hashtag-form').submit(function(event) {
     event.preventDefault();
     var hashtag = event.target[0].value
