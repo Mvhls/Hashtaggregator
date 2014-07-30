@@ -1,3 +1,5 @@
+// stream tweets to client on given interval
+
 module.exports = function streamTweetsToClient(Tweets, Client, Delay) {
   (function streamRemainingTweets() {
       if (Tweets.length) {
@@ -7,20 +9,19 @@ module.exports = function streamTweetsToClient(Tweets, Client, Delay) {
   })();
 }
 
-// not sure how to test this one
-// TEST ==============================
+// TESTED ==============================
 
-// if(process.argv[1] === __filename) {
+if(process.argv[1] === __filename) {
 
-// tweets = ['tweetle dee', 'tweetle dum'];
+  var messenger = require('../messenger')
+  var tweets = ['tweetle dee', 'tweetle dum'];
 
-//   module.exports(function(tweets, process, 1000) {
-//     (function streamRemainingTweets() {
-//         if (Tweets.length) {
-//             Client.emit('sendTweets', Tweets.pop());
-//             setTimeout(streamRemainingTweets, TWEET_SENDING_DELAY);
-//         }
-//     })();
-//   })
-//   process.reallyExit();
-// }
+
+  module.exports(tweets, messenger, 1);
+
+  messenger.on('sendTweets', function(tweet) {
+    console.log(tweet === 'tweetle dee');
+    process.reallyExit();
+  });
+
+}
