@@ -20,7 +20,7 @@ module.exports = function(finderID, stars, cb) {
 
 if(process.argv[1] === __filename) {
 
-  module.exports("493893381274087426", 42, function(err, data) {
+  module.exports('493141255871012864', 42, function(err, data) {
     if(err) return console.error(err);
     console.log(data.rowCount === 1);
     process.reallyExit();
