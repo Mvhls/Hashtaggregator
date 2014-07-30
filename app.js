@@ -91,7 +91,7 @@ io.sockets.on('connection', function(client) {
     })
 
     client.on('newStream', function(newHashtag) {
-        socket.emit('changeColor');
+        client.emit('changeColor');
         messenger.emit('destroy');
         hashtag = newHashtag
         if (hashtag[0] === '#') {
