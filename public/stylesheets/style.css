@@ -4,8 +4,8 @@ Map
 
 .map {
   position: absolute;
-  bottom: 0;
-  height: 50%;
+  bottom: -50%;
+  height: 100%;
   width: 100%;
   z-index: -1;
 }
@@ -14,7 +14,7 @@ Forms
 */
 
 .modal form {
-  position: absolute;
+  position: fixed;
   top: 45%;
   width: 100%;
 }

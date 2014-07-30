@@ -4,7 +4,7 @@ var circleRadius = 7;
 var mapLayer;
 
 var mapOptions = {
-    center: [40.7127, -74.0059],
+    center: [31.7127, -74.0059],
     zoom: 4,
     scrollWheelZoom: true,
     worldCopyJump: true
