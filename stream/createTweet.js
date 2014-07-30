@@ -9,13 +9,14 @@ var tweetSQL = sql.define({
 });
 
 module.exports = function(tweet, cb) {
+  // console.log(tweet);
   var query = tweetSQL.insert(tweet).toQuery()
 
   dbQuery(query, function(err, result) {
 
     if(err) return cb(err)
 
-    cb(null, result);
+    cb(null, "tweet created");
 
   });
 }

@@ -19,7 +19,7 @@ var initialTweets = [];
 var tweetsToSend = [];
 
 // SET DEFAULT HASHTAG =================================================
-var DEFAULT_HASHTAG = '#sdcc'
+var DEFAULT_HASHTAG = '#mydumbfight'
 var hashtag = DEFAULT_HASHTAG;
 
 // run stream
@@ -55,10 +55,10 @@ io.sockets.on('connection', function(client) {
     getAllTweetsFromDB(null, function(err, results) {
         if(err) return console.error(err);
         console.log('getting all tweets from db...')
-        // initialTweets = results;
-        filterByHashtag(hashtag, results, function(err, filteredResults) {
-            initialTweets = filteredResults;
-        })
+        initialTweets = results;
+        // filterByHashtag(hashtag, results, function(err, filteredResults) {
+            // initialTweets = filteredResults;
+        // })
     })
 
     getLastTweetID(function(err, id) {

@@ -5,16 +5,19 @@ updateTweet = require('./updateTweet')
 module.exports = function(tweet, cb) {
   var newTweetObject = {};
   if (tweet.retweeted_status) {
-    var finderID = tweet.retweeted_status.id.toString();
+    console.log('updating a tweet...')
+    var finderID = tweet.retweeted_status.id_str;
     var retweets = tweet.retweeted_status.retweet_count;
     var favorites = tweet.retweeted_status.favorite_count;
     var stars = (retweets + favorites);
+    console.log(finderID);
+    console.log(stars);
     updateTweet(finderID, stars, function(err, data) {
       if (err) return console.error(err);
+      console.log(data.rowCount === 1);
     })
-  }
-  if (tweet.coordinates) {
-    // console.log(tweet);
+  } else if (tweet.coordinates) {
+    console.log(tweet);
 
     newTweetObject = {
       username: tweet.user.screen_name,
