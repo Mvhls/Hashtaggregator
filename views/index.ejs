@@ -7,20 +7,27 @@
     <link rel='stylesheet' href='/stylesheets/reset.css'/>
     <link rel='stylesheet' href='/stylesheets/shoelace.css'/>
     <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
   </head>
 
   <body ng-controller="mapController">
-    <h2><%= title %></h2>
-    <h1>Welcome to <%= title %></h1>
-    <form id="change-hashtag-form">
-      <input type='text' name='hashtag' class='form-box'>
-      <input type='submit'>
-    </form>
 
-    <section id='search-tweets'>
+    <div id = "modal">
+      <form id="change-hashtag-form" class='pure-form'>
+      <ul>
+      <li><input class="pure-input-1" type='text' name='hashtag' id='form-box' placeholder="#Trending"></li>
+      <li><input id="button" class="button-xlarge pure-button" type='submit' value='Choose your hashtag'></li>
+       </ul>
+      </form> 
+    </div> 
+    <h1>Hashtaggregator BANNER PLACEHOLDER</h1>
+    
+
+    <section id='search-tweets-div'>
       <h1>{{title}}</h1>
-      Search: <input class='form-box' ng-model="search">
+      <span id="search-box-text">Search Map for Tweets:</span> 
+      <input class="pure-input-1" id='search-box-itself' ng-model="search">
       <ul>
           <li class="tweet" ng-repeat="tweet in tweets | filter:search | orderBy:'stars':!reverse | limitTo:10" ng-show="search">
               <a href="{{tweet.longitude}}, {{tweet.latitude}}">{{tweet.content}} : {{tweet.username}} : Favorites: {{tweet.stars}}</a>
