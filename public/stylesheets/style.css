@@ -1,15 +1,11 @@
 
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+/*
+Map
+*/
 
-a {
-  color: #00B7FF;
-}
-
-
-#map {
-	width: auto;
-	height: 40em;
+.map {
+  position: absolute;
+  bottom: 0;
+  height: 60%;
+  width: 100%;
 }

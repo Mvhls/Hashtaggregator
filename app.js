@@ -18,7 +18,8 @@ var TWEET_SENDING_DELAY = 5;
 var initialTweets = [];
 
 // SET DEFAULT HASHTAG =================================================
-var hashtag = '#sdcc';
+var DEFAULT_HASHTAG = '#sdcc'
+var hashtag = DEFAULT_HASHTAG;
 
 // run stream
 var stream = require('./stream/twitterStreamToDatabase')();
@@ -45,6 +46,7 @@ app.use('/', routes);
 
 // listen for connections from clients
 io.sockets.on('connection', function(client) {
+    hashtag = DEFAULT_HASHTAG
     var lastTweetID = 0;
     console.log('client connected...');
 
