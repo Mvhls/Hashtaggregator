@@ -1,11 +1,21 @@
 var MAP_IMAGE_LAYER_PATTERN = 'http://{s}.tiles.mapbox.com/v3/zpfled.j3937a4o/{z}/{x}/{y}.png';
 var POPULAR = 75;
 var circleRadius = 7;
+var mapLayer;
 
+var mapOptions = {
+    center: [40.7127, -74.0059],
+    zoom: 4,
+    scrollWheelZoom: true,
+    worldCopyJump: true
+};
+// def map
+window.map = L.map('map', mapOptions);
+// def colors
 window.colors = {
     index: 0,
-    darkCoolColors: ['#468', '363', '606'],
-    lightCoolColors: ['#0cf', '6f6', 'c3f'],
+    darkCoolColors: ['#468', '#363', '#606'],
+    lightCoolColors: ['#0cf', '#6f6', '#c3f'],
     darkCool: '#468',
     lightCool: '#0cf',
     darkWarm: '#f60',
@@ -23,17 +33,18 @@ function Tweet(tweet) {
     this.stars = tweet.stars;
 }
 
-window.map = L.map('map', {
-    center: [40.7127, -74.0059],
-    zoom: 4,
-    scrollWheelZoom: true,
-    worldCopyJump: true
-});
+function resetMap() {
+    if (map) {
+        map.remove();
+    }
+    window.map = L.map('map', mapOptions);
+    mapLayer = L.tileLayer(MAP_IMAGE_LAYER_PATTERN, {
+        maxZoom: 18,
+        minZoom: 3,
+    }).addTo(map);
+    window.searchArray = [];
+}
 
-L.tileLayer(MAP_IMAGE_LAYER_PATTERN, {
-    maxZoom: 18,
-    minZoom: 3,
-}).addTo(map);
 
 // not tested
 function processTweet(tweetData) {

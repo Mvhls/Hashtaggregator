@@ -46,7 +46,7 @@ app.use('/', routes);
 
 // listen for connections from clients
 io.sockets.on('connection', function(client) {
-    hashtag = DEFAULT_HASHTAG
+    hashtag = DEFAULT_HASHTAG;
     var lastTweetID = 0;
     console.log('client connected...');
 
@@ -54,10 +54,10 @@ io.sockets.on('connection', function(client) {
     getAllTweetsFromDB(null, function(err, results) {
         if(err) return console.error(err);
         console.log('getting all tweets from db...')
-        initialTweets = results;
-        // filterByHashtag(hashtag, results, function(err, filteredResults) {
-            // initialTweets = filteredResults;
-        // })
+        // initialTweets = results;
+        filterByHashtag(hashtag, results, function(err, filteredResults) {
+            initialTweets = filteredResults;
+        })
     })
 
     getLastTweetID(function(err, id) {
@@ -95,6 +95,17 @@ io.sockets.on('connection', function(client) {
 
     client.on('newStream', function(newHashtag) {
         client.emit('changeColor');
+
+        getAllTweetsFromDB(null, function(err, results) {
+            if(err) return console.error(err);
+            console.log('getting all tweets from db...')
+            filterByHashtag(newHashtag, results, function(err, filteredResults) {
+                initialTweets = filteredResults;
+            })
+        })
+
+        streamTweetsToClient(initialTweets, client, TWEET_SENDING_DELAY);
+
         messenger.emit('destroy');
         hashtag = newHashtag
         if (hashtag[0] === '#') {

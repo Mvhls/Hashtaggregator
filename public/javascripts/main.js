@@ -7,14 +7,14 @@ app.controller(
 
       $interval(function(){
         $scope.tweets = window.searchArray
-      }, 5000);
+      }, 3000);
     }
 );
 
 $(document).ready(function () {
   var counter = 0;
   var socket = window.socket;
-
+  resetMap();
   socket.emit('ready');
 
   socket.on('sendTweets', function(data) {
@@ -48,5 +48,6 @@ $(document).ready(function () {
     var hashtag = event.target[0].value
     console.log(hashtag)
     socket.emit('newStream', hashtag);
+    resetMap();
   })
 })
