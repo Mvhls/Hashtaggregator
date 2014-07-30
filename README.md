@@ -1,11 +1,11 @@
-hashtaggregate
+#hashtaggregate
 ==============
 
 An app that streams tweets from a selected hashtag and geographically displays them.
 
 ##product objectives
 - capture a stream of tweets from twitter
-- save tweets 
+- save tweets
 - display tweets on a map
 - use Angular-powered search to find spefic tweets and zoom in on location
 

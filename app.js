@@ -16,6 +16,7 @@ var filterByHashtag = require('./tasks/filterByHashtag')
 // constants and vars
 var TWEET_SENDING_DELAY = 5;
 var initialTweets = [];
+var tweetsToSend = [];
 
 // SET DEFAULT HASHTAG =================================================
 var DEFAULT_HASHTAG = '#sdcc'
@@ -79,11 +80,14 @@ io.sockets.on('connection', function(client) {
     client.on('moarTweets', function(id) {
         getNewTweets(null, lastTweetID, function(err, newTweets) {
             if(err) return console.error(err);
-            // send tweets to view
-            newTweets.forEach(function(tweet) {
-                console.log("sending tweet #" + tweet.id + "...")
-                client.emit('sendTweets', tweet);
+
+            // send filtered tweets to view
+            filterByHashtag(hashtag, newTweets, function(err, filteredResults) {
+                filteredResults.forEach(function(tweet) {
+                    client.emit('sendTweets', tweet);
+                })
             })
+
             // update lastTweetID
             getLastTweetID(function(err, id) {
                 if (err) return console.error(err);
@@ -95,24 +99,24 @@ io.sockets.on('connection', function(client) {
 
     client.on('newStream', function(newHashtag) {
         client.emit('changeColor');
-
-        getAllTweetsFromDB(null, function(err, results) {
-            if(err) return console.error(err);
-            console.log('getting all tweets from db...')
-            filterByHashtag(newHashtag, results, function(err, filteredResults) {
-                initialTweets = filteredResults;
-            })
-        })
-
-        streamTweetsToClient(initialTweets, client, TWEET_SENDING_DELAY);
-
         messenger.emit('destroy');
+
+
         hashtag = newHashtag
         if (hashtag[0] === '#') {
             stream = require('./stream/twitterStreamToDatabase')(hashtag);
         } else {
             stream = require('./stream/twitterStreamToDatabase')('#' + hashtag);
         }
+
+        getAllTweetsFromDB(null, function(err, results) {
+            if(err) return console.error(err);
+            console.log('getting all tweets from db...')
+            filterByHashtag(newHashtag, results, function(err, filteredResults) {
+                initialTweets = filteredResults;
+                streamTweetsToClient(initialTweets, client, TWEET_SENDING_DELAY);
+            })
+        })
     })
 })
 

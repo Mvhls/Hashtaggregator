@@ -5,6 +5,7 @@ var objectifyTweet = require('./objectifyTweet');
 var messenger = require('../messenger');
 var stream;
 
+
 module.exports = function(hashtag) {
   twitterStream(hashtag, function(err, theStream) {
     stream = theStream;
@@ -21,6 +22,7 @@ module.exports = function(hashtag) {
     })
   });
 
+  // memory leak risk
   messenger.on('destroy', function() {
     stream.stop();
   })
