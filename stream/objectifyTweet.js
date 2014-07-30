@@ -1,3 +1,5 @@
+// turn tweet json from stream into a js object in the format we want
+
 updateTweet = require('./updateTweet')
 
 module.exports = function(tweet, cb) {

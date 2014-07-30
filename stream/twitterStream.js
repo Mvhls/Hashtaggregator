@@ -1,6 +1,5 @@
 // Connect to Twitter Streaming API and return constant stream of JSON objects
 
-// var keys = require('../keys');
 var Twit = require('twit');
 
 var T = new Twit({
@@ -19,3 +18,5 @@ module.exports = function(hashtag, cb) {
 
   cb(null, stream);
 };
+
+// CAN'T TEST THIS DIRECTLY
