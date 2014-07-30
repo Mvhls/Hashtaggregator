@@ -12,7 +12,7 @@ module.exports = function(tweet, cb) {
     })
   }
   if (tweet.coordinates) {
-    console.log(tweet);
+    // console.log(tweet);
 
     newTweetObject = {
       username: tweet.user.screen_name,
@@ -23,14 +23,14 @@ module.exports = function(tweet, cb) {
       location: tweet.user.location,
       stars: tweet.favorite_count || 0
     }
-    console.log(newTweetObject);
+    // console.log(newTweetObject);
   }
 
   cb(null, newTweetObject);
 }
 
 
-// TEST =========================================
+// TESTED =========================================
 
 if(process.argv[1] === __filename) {
   var rawTweet = {

@@ -20,7 +20,7 @@ module.exports = function(tweet, cb) {
   });
 }
 
-// TEST =================================
+// TESTED =================================
 
 if(process.argv[1] === __filename) {
     var tweetObjectToSave = {
