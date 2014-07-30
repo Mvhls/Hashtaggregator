@@ -12,10 +12,13 @@ var streamTweetsToClient = require('./tasks/streamTweetsToClient');
 var getAllTweetsFromDB = require('./tasks/getAllTweetsFromDB');
 var getNewTweets = require('./tasks/getNewTweets');
 var getLastTweetID = require('./tasks/getLastTweetID');
+var filterByHashtag = require('./tasks/filterByHashtag')
 // constants and vars
 var TWEET_SENDING_DELAY = 5;
-var initialTweets;
-var hashtag;
+var initialTweets = [];
+
+// SET DEFAULT HASHTAG =================================================
+var hashtag = '#sdcc';
 
 // run stream
 var stream = require('./stream/twitterStreamToDatabase')();
@@ -46,10 +49,12 @@ io.sockets.on('connection', function(client) {
     console.log('client connected...');
 
     // on connection, get all tweets from db
-    getAllTweetsFromDB(null, hashtag, function(err, results) {
+    getAllTweetsFromDB(null, function(err, results) {
         if(err) return console.error(err);
         console.log('getting all tweets from db...')
-        initialTweets = results;
+        filterByHashtag(hashtag, results, function(err, filteredResults) {
+            initialTweets = filteredResults;
+        })
     })
 
     getLastTweetID(function(err, id) {
@@ -86,7 +91,7 @@ io.sockets.on('connection', function(client) {
     })
 
     client.on('newStream', function(newHashtag) {
-        // socket.emit('changeColor');
+        socket.emit('changeColor');
         messenger.emit('destroy');
         hashtag = newHashtag
         if (hashtag[0] === '#') {

@@ -28,6 +28,13 @@ $(document).ready(function () {
     // console.log('LAST TWEET: ' + lastTweetID)
   })
 
+  socket.on('changeColor', function() {
+    var index = (window.colors.index + 1) % 3;
+    window.colors.darkCool = window.colors.darkCoolColors[index];
+    window.colors.lightCool = window.colors.lightCoolColors[index];
+    window.colors.index = index;
+  })
+
   setInterval(askForNewTweets, 2000);
 
   // get moar tweets!
@@ -37,7 +44,7 @@ $(document).ready(function () {
 
 
   $('#change-hashtag-form').submit(function(event) {
-    // event.preventDefault();
+    event.preventDefault();
     var hashtag = event.target[0].value
     console.log(hashtag)
     socket.emit('newStream', hashtag);

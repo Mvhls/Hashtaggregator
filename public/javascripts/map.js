@@ -1,10 +1,17 @@
 var MAP_IMAGE_LAYER_PATTERN = 'http://{s}.tiles.mapbox.com/v3/zpfled.j3937a4o/{z}/{x}/{y}.png';
 var POPULAR = 75;
 var circleRadius = 7;
-var darkCool = '#468';
-var lightCool = '#0cf';
-var darkWarm = '#f60';
-var lightWarm = '#fa6';
+
+window.colors = {
+    index: 0,
+    darkCoolColors: ['#468', '363', '606'],
+    lightCoolColors: ['#0cf', '6f6', 'c3f'],
+    darkCool: '#468',
+    lightCool: '#0cf',
+    darkWarm: '#f60',
+    lightWarm: '#fa6'
+}
+
 window.searchArray = [];
 
 function Tweet(tweet) {
@@ -40,8 +47,8 @@ function processTweet(tweetData) {
 function display(tweet) {
     L.circleMarker([tweet.latitude, tweet.longitude], {
         radius: circleRadius,
-        color: (tweet.stars > POPULAR ? darkWarm : darkCool),
-        fillColor: (tweet.stars > POPULAR ? lightWarm : lightCool),
+        color: (tweet.stars > POPULAR ? window.colors.darkWarm : window.colors.darkCool),
+        fillColor: (tweet.stars > POPULAR ? window.colors.lightWarm : window.colors.lightCool),
         fillOpacity: (tweet.stars > POPULAR ? .9 : .6)
     }).addTo(map)
         .bindPopup(formatTweet(tweet));
