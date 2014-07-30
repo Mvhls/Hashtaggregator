@@ -1,8 +1,10 @@
 $(document).ready(function() {
 	
-	$('#button').submit(function(){
-		console.log('in here')
-		$('#modal').css("display", "none")
+  $('.hashtag-form-modal').show();
+
+	$('#change-hashtag-form').submit(function(){
+    event.preventDefault();
+    $('.hashtag-form-modal').fadeToggle(400);
 	});
 
 
