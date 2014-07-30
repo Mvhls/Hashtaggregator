@@ -34,7 +34,7 @@ An app that streams tweets from a selected hashtag and geographically displays t
 
 - run npm install to require dependencies
 - export twitter keys into the terminal with variable name the in keys file
-- change local host name in tasks/query.js line 4
+- create local database by running tasks/createTable.js file
 - run node app.js
 - app is configured to run on port: 3888
 
