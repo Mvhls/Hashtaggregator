@@ -7,8 +7,7 @@ module.exports = function(err, cb) {
   if(err) return cb(err);
 
   var query = {
-    text: 'SELECT * FROM "tweets"'//' WHERE "tweets"."content" LIKE $1',
-    // values: [ '%' + hashtag + '%' ]
+    text: 'SELECT * FROM "tweets"'
   };
 
   var results = dbQuery(query, function(err, data) {
@@ -20,9 +19,7 @@ module.exports = function(err, cb) {
   });
 }
 
-
-
-// TEST ===========================================
+// TESTED ===========================================
 
 if(process.argv[1] === __filename) {
   module.exports(null, function(err, results) {

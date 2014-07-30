@@ -22,9 +22,7 @@ module.exports = function(err, lastTweetID, cb) {
   });
 }
 
-
-
-// TEST ===========================================
+// TESTED ===========================================
 
 function byID(a, b) {
   if (a.id < b.id)

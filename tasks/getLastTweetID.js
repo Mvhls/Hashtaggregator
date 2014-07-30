@@ -16,7 +16,7 @@ module.exports = function(cb) {
   });
 }
 
-// TEST ==============================
+// TESTED ==============================
 
 if(process.argv[1] === __filename) {
 

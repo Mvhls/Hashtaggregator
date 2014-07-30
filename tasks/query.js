@@ -24,13 +24,9 @@ module.exports = function(sql, cb) {
 
 if(process.argv[1] === __filename) {
 
-  module.exports({text: 'INSERT INTO "tweets" ("username") VALUES ($1)', values: ['234']}, function(err, data) {
+  module.exports('SELECT MAX("username") FROM "tweets"', function(err, data) {
     if(err) return console.error(err);
-    console.log(data.rows);
-
-    module.exports('SELECT * from tweets', function(err, data) {
-      if(err) return console.error(err);
-      console.log(data.rows);
-    })
+    console.log(data.rows[0].max[0] === 'z');
+    process.reallyExit();
   })
 }
