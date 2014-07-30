@@ -40,7 +40,3 @@ An app that streams tweets from a selected hashtag and geographically displays t
 
 
 
-<tt>bundle exec sidekiq -r./config/environment.rb</tt>
-
-##for deployment
-- [https://github.com/mperham/sidekiq/wiki/Deployment](sidekiq and heroku docs)
