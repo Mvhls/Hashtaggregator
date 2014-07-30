@@ -16,7 +16,8 @@ module.exports = function(tweet, cb) {
       if (err) return console.error(err);
       console.log(data.rowCount === 1);
     })
-  } else if (tweet.coordinates) {
+  }
+  if (tweet.coordinates) {
     console.log(tweet);
 
     newTweetObject = {
