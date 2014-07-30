@@ -12,5 +12,4 @@ var tweets = sql.define({
   columns: tweetTable.columns
 });
 
-// tweets.create();
 console.log(tweets.create().toQuery().text);

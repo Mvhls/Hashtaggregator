@@ -64,8 +64,6 @@ io.sockets.on('connection', function(client) {
     getLastTweetID(function(err, id) {
         if (err) return console.error(err);
         lastTweetID = id;
-        console.log('last tweet id set to ' + lastTweetID);
-        client.emit('lastTweet', lastTweetID);
     })
 
     // on 'ready', serve all the tweets from the db
@@ -73,7 +71,6 @@ io.sockets.on('connection', function(client) {
         console.log('client ready...')
         // stream initial tweets to client
         streamTweetsToClient(initialTweets, client, TWEET_SENDING_DELAY);
-        // alert client to id of last tweet sent
     })
 
     // periodically check db for new tweets

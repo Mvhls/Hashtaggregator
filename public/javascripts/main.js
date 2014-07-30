@@ -14,6 +14,7 @@ app.controller(
 $(document).ready(function () {
   var counter = 0;
   var socket = window.socket;
+
   resetMap();
   socket.emit('ready');
 
