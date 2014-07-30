@@ -19,7 +19,7 @@ var initialTweets = [];
 var tweetsToSend = [];
 
 // SET DEFAULT HASHTAG =================================================
-var DEFAULT_HASHTAG = '#mydumbfight'
+var DEFAULT_HASHTAG = require('./stream/hashtag')
 var hashtag = DEFAULT_HASHTAG;
 
 // run stream

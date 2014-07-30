@@ -6,6 +6,4 @@ $(document).ready(function() {
     event.preventDefault();
     $('.hashtag-form-modal').fadeToggle(400);
 	});
-
-
 });

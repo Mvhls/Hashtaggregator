@@ -19,6 +19,7 @@ function createTweetCB(err, data) {
 
 // exports
 module.exports = function(hashtag) {
+  if (hashtag === '#') hashtag = require('./hashtag');
   twitterStream(hashtag, function(err, theStream) {
     stream = theStream;
   });
