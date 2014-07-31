@@ -34,8 +34,7 @@
 
     <section id='search-tweets-div'>
       <h1>{{title}}</h1>
-      <span id="search-box-text">Search Map for Tweets:</span> 
-      <input class="pure-input-1" id='search-box-itself' ng-model="search">
+      <input class="form-field search-field" id='search-box-itself' ng-model="search" placeholder="find some tweets">
       <ul id="search-results"> 
         <li class="tweet leaflet-popup-content" ng-repeat="tweet in tweets | filter:search | orderBy:'stars':!reverse | limitTo:10" ng-show="search">
             <a class="top-tweet" href="{{tweet.longitude}},{{tweet.latitude}}">

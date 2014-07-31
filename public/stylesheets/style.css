@@ -105,39 +105,21 @@ Search Functionality
 */
 
 #search-tweets-div{
-	/*border: solid;*/
-	/*border-color: #282828;*/
-	/*border-width: 1px;*/
-	background-color: #fff;
-	border: solid;
-	border-color: #282828;
-	border-width: 1px;
-	background-color: #363636;
 	text-align: center;
+	background-color: #fff;
+	color: #444;
 }
 
-#search-box-itself{
-	width: 20em;
-	margin-right:1em;
-	border-radius: 5px;
-	height: 1.5em;
-	background-color: #fa6;
-	border-width: 0px;
-	color: white;
-	font-size: 1.5em;
+.search-field {
+	border: 1px solid #fa6;
+	width: 40%;
 }
 
-
-#search-box-itself:focus{
-	outline: none;
-}
-
-#search-box-text{
-	color:white;
-	font-family: Helvetica;
-	font-size: 1.5em;
-	letter-spacing: .07em;
-	padding-right: .5em;
+.search-field:hover,
+.search-field:focus,
+.search-field:active {
+  outline: #444;
+  border: #444;
 }
 
 #banner{
@@ -147,6 +129,3 @@ Search Functionality
 #banner-div{
 	background-color: #444;
 }
-
-/*#0cf', '#6f6', '#c3f*/
-/*#468', '#363', '#606'*/
