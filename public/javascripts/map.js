@@ -71,8 +71,8 @@ function formatTweet(tweet) {
 }
 
 // not tested
-$("#search-tweets").on("click", "a", function(event) {
-    event.preventDefault()
+$("#search-tweets-div").on("click", "a", function(event) {
+    event.preventDefault();
     var params = [];
     var paramsFloat = []
     params = event.target.attributes[0].value.split(',')
