@@ -67,17 +67,25 @@ function display(tweet) {
 
 // tested
 function formatTweet(tweet) {
-    return "<p><a href='https://twitter.com/" + tweet.username + "'>@" + tweet.username + "</a> said: </p><p class='tweet-popup'>" + tweet.content + "</p><h4>Favorites and Retweets: " + tweet.stars + "</h4>";
+    return "<p><a href='https://twitter.com/" + tweet.username + "'>@" + tweet.username + "</a> said: </p><p class='tweet-popup'>" + tweet.content + "</p><h4>Favorites and Retweets: " + (tweet.stars || "None") + "</h4>";
 }
 
 // not tested
-$("#search-tweets").on("click", "a", function(event) {
-    event.preventDefault()
-    var params = [];
-    var paramsFloat = []
-    params = event.target.attributes[0].value.split(',')
+$("#search-tweets-div").on("click", "a", function(event) {
+    event.preventDefault();
+    var path = event.currentTarget.pathname;
+    console.log(path);
+    // var last = path.length - 1
+    // console.log(last)
+    var params = path.slice(1);
+    params = params.split(',');
+    console.log(params)
+    var paramsFloat = [];
     $.each(params, function( index, value) {
-        paramsFloat.push(parseFloat(value))
-    })
-    map.setView(new L.LatLng(params[1], params[0]), zoom = 18, animate = true)
-})
+        paramsFloat.push(parseFloat(value));
+    });
+    console.log(paramsFloat);
+    $('#search-results').hide();
+    $('#map').focus();
+    map.setView(new L.LatLng(params[1], params[0]), zoom = 18, animate = true);
+});
