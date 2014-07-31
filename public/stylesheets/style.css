@@ -71,14 +71,44 @@ a{
 }
 
 /*
+Top Tweets
+ */
+
+.tweet {
+	display: inline-block;
+	border: 2px solid #0cf;
+	border-radius: 2em;
+	padding: 1em;
+	width: 20%;
+	line-height: 1em;
+}
+
+.tweet-username {
+	font-size: 2em;
+	padding: 0;
+}
+
+.tweet-content {
+	font-size: 1.5em;
+	padding: 0;
+	line-height: 1em;
+	/*width: 30%;*/
+}
+
+.tweet-stars {
+	font-size: 1.5em;
+	padding: 0;
+}
+
+/*
 Search Functionality
 */
 
 #search-tweets-div{
-	border: solid;
-	border-color: #282828;
-	border-width: 1px;
-	background-color: #444;
+	/*border: solid;*/
+	/*border-color: #282828;*/
+	/*border-width: 1px;*/
+	background-color: #fff;
 	text-align: center;
 }
 

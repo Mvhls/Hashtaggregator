@@ -34,9 +34,21 @@
       <span id="search-box-text">Search Map for Tweets:</span> 
       <input class="pure-input-1" id='search-box-itself' ng-model="search">
       <ul>
-          <li class="tweet" ng-repeat="tweet in tweets | filter:search | orderBy:'stars':!reverse | limitTo:10" ng-show="search">
-              <a href="{{tweet.longitude}}, {{tweet.latitude}}">{{tweet.content}} : {{tweet.username}} : Favorites: {{tweet.stars}}</a>
+        <!-- <div class="leaflet-popup-content-wrapper"> -->
+          <li class="tweet leaflet-popup-content" ng-repeat="tweet in tweets | filter:search | orderBy:'stars':!reverse | limitTo:10" ng-show="search">
+              <a class="top-tweet" href="{{tweet.longitude}}, {{tweet.latitude}}">
+                <p class="tweet-username">
+                  {{tweet.username}}
+                </p>
+                <p class="tweet-content">
+                  {{tweet.content}}
+                </p>
+                <p class="tweet-stars">
+                  {{tweet.stars}} favorites
+                </p>
+              </a>
           </li>
+        <!-- </div> -->
       </ul>
     </section>
 
