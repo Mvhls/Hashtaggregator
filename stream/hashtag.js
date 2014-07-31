@@ -1,2 +1,2 @@
 // set default hashtag
-module.exports = '#myDumbFight';
+module.exports = '#sdcc';
