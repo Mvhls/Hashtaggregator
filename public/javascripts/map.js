@@ -6,7 +6,7 @@ var mapLayer;
 var mapOptions = {
     center: [31.7127, -74.0059],
     zoom: 4,
-    scrollWheelZoom: true,
+    scrollWheelZoom: false,
     worldCopyJump: true
 };
 // def map
@@ -67,7 +67,7 @@ function display(tweet) {
 
 // tested
 function formatTweet(tweet) {
-    return "<a href='https://twitter.com/" + tweet.username + "'>@" + tweet.username + "</a> said: <p class='tweet-popup'>" + tweet.content + "</p><h4>Favorites and Retweets: " + tweet.stars + "</h4>";
+    return "<p><a href='https://twitter.com/" + tweet.username + "'>@" + tweet.username + "</a> said: </p><p class='tweet-popup'>" + tweet.content + "</p><h4>Favorites and Retweets: " + tweet.stars + "</h4>";
 }
 
 // not tested

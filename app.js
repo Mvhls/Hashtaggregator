@@ -14,7 +14,7 @@ var getNewTweets = require('./tasks/getNewTweets');
 var getLastTweetID = require('./tasks/getLastTweetID');
 var filterByHashtag = require('./tasks/filterByHashtag')
 // constants and vars
-var TWEET_SENDING_DELAY = 5;
+var TWEET_SENDING_DELAY = 10;
 var initialTweets = [];
 var tweetsToSend = [];
 
@@ -98,8 +98,8 @@ io.sockets.on('connection', function(client) {
         client.emit('changeColor');
         messenger.emit('destroy');
 
-
-        hashtag = newHashtag
+        console.log(newHashtag === '');
+        hashtag = (newHashtag === '' ? newHashtag : require('./stream/hashtag'));
         if (hashtag[0] === '#') {
             stream = require('./stream/twitterStreamToDatabase')(hashtag);
         } else {
