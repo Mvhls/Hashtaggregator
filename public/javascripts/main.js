@@ -46,9 +46,9 @@ $(document).ready(function () {
   // change hashtag stream
   $('#change-hashtag-form').on('submit', function(event) {
     event.preventDefault();
-    var hashtag = event.target[0].value
+    var hashtag = event.target[0].value;
     resetMap();
     socket.emit('newStream', hashtag);
-    $('.hashtag-form-modal').fadeToggle(400);
-  })
-})
+    $('.hashtag-form-modal').fadeToggle(200);
+  });
+});
