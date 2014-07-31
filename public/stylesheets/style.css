@@ -9,7 +9,6 @@ Map
   height: 70%;
   width: 100%;
   z-index: -1;
-  border: dotted;
 }
 
 
@@ -109,3 +108,14 @@ p{
 #change-hashtag-form li{
 	display: inline-block;
 }
+
+#banner{
+	height: 8em;
+}
+
+#banner-div{
+	background-color: #444;
+}
+
+/*#0cf', '#6f6', '#c3f*/
+/*#468', '#363', '#606'*/
