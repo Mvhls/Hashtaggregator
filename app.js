@@ -14,12 +14,12 @@ var getNewTweets = require('./tasks/getNewTweets');
 var getLastTweetID = require('./tasks/getLastTweetID');
 var filterByHashtag = require('./tasks/filterByHashtag')
 // constants and vars
-var TWEET_SENDING_DELAY = 5;
+var TWEET_SENDING_DELAY = 10;
 var initialTweets = [];
 var tweetsToSend = [];
 
 // SET DEFAULT HASHTAG =================================================
-var DEFAULT_HASHTAG = '#mydumbfight'
+var DEFAULT_HASHTAG = require('./stream/hashtag')
 var hashtag = DEFAULT_HASHTAG;
 
 // run stream
@@ -52,26 +52,26 @@ io.sockets.on('connection', function(client) {
     console.log('client connected...');
 
     // on connection, get all tweets from db
-    getAllTweetsFromDB(null, function(err, results) {
-        if(err) return console.error(err);
-        console.log('getting all tweets from db...')
-        initialTweets = results;
+    // getAllTweetsFromDB(null, function(err, results) {
+        // if(err) return console.error(err);
+        // console.log('getting all tweets from db...');
+        // initialTweets = results;
         // filterByHashtag(hashtag, results, function(err, filteredResults) {
             // initialTweets = filteredResults;
         // })
-    })
+    // });
 
     getLastTweetID(function(err, id) {
         if (err) return console.error(err);
         lastTweetID = id;
-    })
+    });
 
     // on 'ready', serve all the tweets from the db
     client.on('ready', function() {
-        console.log('client ready...')
+        console.log('client ready...');
         // stream initial tweets to client
-        streamTweetsToClient(initialTweets, client, TWEET_SENDING_DELAY);
-    })
+        // streamTweetsToClient(initialTweets, client, TWEET_SENDING_DELAY);
+    });
 
     // periodically check db for new tweets
     client.on('moarTweets', function(id) {
@@ -82,24 +82,24 @@ io.sockets.on('connection', function(client) {
             filterByHashtag(hashtag, newTweets, function(err, filteredResults) {
                 filteredResults.forEach(function(tweet) {
                     client.emit('sendTweets', tweet);
-                })
-            })
+                });
+            });
 
             // update lastTweetID
             getLastTweetID(function(err, id) {
                 if (err) return console.error(err);
                 lastTweetID = id;
                 client.emit('lastTweet', lastTweetID);
-            })
-        })
-    })
+            });
+        });
+    });
 
     client.on('newStream', function(newHashtag) {
         client.emit('changeColor');
         messenger.emit('destroy');
 
-
-        hashtag = newHashtag
+        console.log(newHashtag === '');
+        hashtag = (newHashtag === '' ? require('./stream/hashtag') : newHashtag);
         if (hashtag[0] === '#') {
             stream = require('./stream/twitterStreamToDatabase')(hashtag);
         } else {
@@ -109,7 +109,7 @@ io.sockets.on('connection', function(client) {
         getAllTweetsFromDB(null, function(err, results) {
             if(err) return console.error(err);
             console.log('getting all tweets from db...')
-            filterByHashtag(newHashtag, results, function(err, filteredResults) {
+            filterByHashtag(hashtag, results, function(err, filteredResults) {
                 initialTweets = filteredResults;
                 streamTweetsToClient(initialTweets, client, TWEET_SENDING_DELAY);
             })

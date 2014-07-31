@@ -27,14 +27,14 @@ $(document).ready(function () {
   socket.on('lastTweet', function(id) {
     var lastTweetID = id;
     // console.log('LAST TWEET: ' + lastTweetID)
-  })
+  });
 
   socket.on('changeColor', function() {
     var index = (window.colors.index + 1) % 3;
     window.colors.darkCool = window.colors.darkCoolColors[index];
     window.colors.lightCool = window.colors.lightCoolColors[index];
     window.colors.index = index;
-  })
+  });
 
   setInterval(askForNewTweets, 2000);
 
@@ -44,11 +44,11 @@ $(document).ready(function () {
   }
 
   // change hashtag stream
-  $('#change-hashtag-form').submit(function(event) {
+  $('#change-hashtag-form').on('submit', function(event) {
     event.preventDefault();
-    var hashtag = event.target[0].value
-    console.log(hashtag)
-    socket.emit('newStream', hashtag);
+    var hashtag = event.target[0].value;
     resetMap();
-  })
-})
+    socket.emit('newStream', hashtag);
+    $('.hashtag-form-modal').fadeToggle(200);
+  });
+});
