@@ -67,7 +67,7 @@ function display(tweet) {
 
 // tested
 function formatTweet(tweet) {
-    return "<a href='https://twitter.com/" + tweet.username + "'>@" + tweet.username + "</a> said: <p class='tweet-popup'>" + tweet.content + "</p><h4>Favorites and Retweets: " + tweet.stars + "</h4>";
+    return "<a href='https://twitter.com/" + tweet.username + "'>@" + tweet.username + "</a> said: <p class='tweet-popup'>" + tweet.content + "</p><h4>Favorites and Retweets: " + (tweet.stars || "None") + "</h4>";
 }
 
 // not tested
