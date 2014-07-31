@@ -60,60 +60,29 @@ input {
 	border-bottom-left-radius: 0;
 }
 
-/*
-Messages
-*/
-
-.msg {
-  width: 100%;
-  text-align: center;
-}
-/*============================*//*============================*//*============================*//*============================*//*============================*//*============================*//*============================*//*============================*//*============================*//*============================*//*============================*//*============================*//*============================*//*============================*//*============================*//*============================*//*============================*//*============================*/
-
-/*.message-modal {
-  position: absolute;
-  background-image: url('/images/patriot.jpg');
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  width: 100%;
-}
-
-.message {
-  position: relative;
-  text-align: center;
-  top: 40%;
-  width: 55%;
-  padding: 1em;
-  margin: 0 auto;
-}*/
-
 /*General brand image*/
 
-/*a{
+a{
 	text-decoration: none;
-	font-family: Helvetica;
+	/*font-family: Helvetica;*/
 	color: #fa6;
 	line-height: 2;
 	size: 1.5em;
 }
 
-p{
-	font-family: Helvetica;
-}*/
+/*
+Search Functionality
+*/
 
-
-/*Search Functionality*/
-
-/*#search-tweets-div{
+#search-tweets-div{
 	border: solid;
 	border-color: #282828;
 	border-width: 1px;
 	background-color: #444;
 	text-align: center;
 }
-*/
-/*#search-box-itself{
+
+#search-box-itself{
 	width: 20em;
 	margin-right:1em;
 	border-radius: 5px;
@@ -122,8 +91,8 @@ p{
 	border-width: 0px;
 	color: white;
 	font-size: 1.5em;
-}*/
-/*
+}
+
 
 #search-box-itself:focus{
 	outline: none;
@@ -137,28 +106,3 @@ p{
 	padding-right: .5em;
 
 }
-*/
-/*Modal form stuff */
-
-/*#modal{
-	height: 200em;
-	width: 100%;
-	background-color: black;
-	opacity: .8;
-	border: dotted;
-	z-index: 1;
-}*/
-
-/*#button{
-	width: 14em;
-}*/
-
-/*#form-box{
-	width: 20em;
-	margin-right:1em;
-}
-
-#form-box:focus{
-	border-color: #fa6;
-}
-*/
