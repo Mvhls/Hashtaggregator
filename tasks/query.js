@@ -1,6 +1,6 @@
 // Function that connects to and queries the database with the sql statement passed to it
 
-var pg = require('pg')
+var pg = require('pg');
 var conString = (process.env.DATABASE_URL || "postgres://zpfled@localhost/hashtaggregator");
 console.log(process.env.DATABASE_URL);
 
@@ -14,11 +14,11 @@ module.exports = function(sql, cb) {
       //call `done()` to release the client back to the pool
       done();
 
-      if(err) return console.error(err)
+      if(err) return console.error(err);
       cb(null, result);
     });
   });
-}
+};
 
 // TEST ================================
 
